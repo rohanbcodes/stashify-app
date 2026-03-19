@@ -1,0 +1,56 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="icongrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="200" height="200" rx="44" fill="url(#icongrad)"/>
+
+  <!-- Chest body -->
+  <rect x="35" y="122" width="130" height="58" rx="9" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+
+  <!-- Chest body band -->
+  <rect x="35" y="148" width="130" height="8" rx="0" fill="rgba(255,255,255,0.10)"/>
+
+  <!-- Chest lid -->
+  <rect x="30" y="92" width="140" height="38" rx="9" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+
+  <!-- Lid shine -->
+  <rect x="38" y="95" width="124" height="5" rx="3" fill="rgba(255,255,255,0.30)"/>
+
+  <!-- S monogram on lid -->
+  <text x="100" y="120"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="24"
+    font-weight="700"
+    fill="rgba(255,255,255,0.95)">S</text>
+
+  <!-- Latch -->
+  <rect x="88" y="126" width="24" height="14" rx="4" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.55)" stroke-width="1.2"/>
+  <circle cx="100" cy="133" r="4" fill="rgba(255,255,255,0.9)"/>
+  <circle cx="100" cy="133" r="2" fill="#2563eb"/>
+
+  <!-- Coin slot -->
+  <rect x="94" y="93" width="12" height="4" rx="2" fill="rgba(99,102,241,0.55)"/>
+
+  <!-- Gold coin -->
+  <circle cx="100" cy="79" r="11" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="100" y="84"
+    text-anchor="middle"
+    font-family="system-ui, sans-serif"
+    font-size="11"
+    font-weight="700"
+    fill="#92400e">$</text>
+
+  <!-- Downward arrow -->
+  <line x1="100" y1="52" x2="100" y2="66" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M93 60 L100 68 L107 60" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Chest feet -->
+  <rect x="45" y="176" width="18" height="8" rx="4" fill="rgba(255,255,255,0.22)"/>
+  <rect x="137" y="176" width="18" height="8" rx="4" fill="rgba(255,255,255,0.22)"/>
+</svg>
