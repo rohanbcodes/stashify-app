@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const latestMessage = messages[messages.length - 1].content;
 
     // Call our Python agent backend
-    const response = await fetch("http://localhost:8000/chat", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_AGENT_URL}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: latestMessage, history: messages }),
