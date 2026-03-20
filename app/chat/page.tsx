@@ -41,11 +41,7 @@ type Goal = {
   emoji: string;
 };
 
-const DEMO_GOALS: Goal[] = [
-  { name: "Jordans", saved: 35, target: 50, emoji: "👟" },
-  { name: "Laptop", saved: 120, target: 800, emoji: "💻" },
-  { name: "Holiday", saved: 200, target: 500, emoji: "✈️" },
-];
+const DEMO_GOALS: Goal[] = [];
 
 const SUGGESTED_PROMPTS = [
   "Save $20 for my Jordans 👟",
