@@ -1,4 +1,6 @@
 "use client";
+import { createPublicClient, http, parseAbi } from "viem";
+import { baseSepolia } from "viem/chains";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -43,6 +45,19 @@ type Goal = {
 
 const DEMO_GOALS: Goal[] = [];
 
+const VAULT_ADDRESS = "0xf475cEB6460dD0F004b27095aFB4C8CFc9B0260C" as const;
+const WALLET_ADDRESS = "0xb1525777685076921fA1E1f8741d3Bee438594bD" as const;
+
+const vaultAbi = parseAbi([
+  "function getGoals() view returns (string[])",
+  "function getBalance(string goalName) view returns (uint256)",
+]);
+
+const client = createPublicClient({
+  chain: baseSepolia,
+  transport: http(),
+});
+
 const SUGGESTED_PROMPTS = [
   "Save $20 for my Jordans 👟",
   "I want to save $100 for a new laptop",
@@ -67,6 +82,45 @@ export default function ChatPage() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+  const fetchGoals = async () => {
+    try {
+      const goalNames = await client.readContract({
+        address: VAULT_ADDRESS,
+        abi: vaultAbi,
+        functionName: "getGoals",
+        account: WALLET_ADDRESS,
+      }) as string[];
+
+      if (goalNames.length === 0) return;
+
+      const goalData = await Promise.all(
+        goalNames.map(async (name) => {
+          const balance = await client.readContract({
+            address: VAULT_ADDRESS,
+            abi: vaultAbi,
+            functionName: "getBalance",
+            args: [name],
+            account: WALLET_ADDRESS,
+          }) as bigint;
+          return {
+            name,
+            saved: Number(balance) / 1_000_000,
+            target: Number(balance) / 1_000_000 * 5,
+            emoji: "🎯",
+          };
+        })
+      );
+
+      setGoals(goalData);
+    } catch (e) {
+      console.error("Failed to fetch goals:", e);
+    }
+  };
+
+  fetchGoals();
+}, []);
 
   const sendMessage = async (text?: string) => {
     const userMessage = text || input;
