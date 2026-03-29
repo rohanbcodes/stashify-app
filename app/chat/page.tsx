@@ -328,7 +328,8 @@ export default function ChatPage() {
                   style={{ width: `${Math.min((totalSaved / totalTarget) * 100, 100)}%`, background: "linear-gradient(90deg, #2563eb, #7c3aed)" }}
                 />
               </div>
-              <p className="text-blue-400 text-xs mt-2">{((totalSaved / totalTarget) * 100).toFixed(1)}% of total goal reached</p>
+              <p className="text-blue-400 text-xs mt-2">{totalTarget > 0 ? ((totalSaved / totalTarget) * 100).toFixed(1) : "0"}% of total goal reached</p>
+
             </div>
           </div>
 
