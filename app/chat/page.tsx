@@ -190,39 +190,54 @@ export default function ChatPage() {
         </div>
 
         {/* Tab switcher */}
-        <div className="flex items-center gap-1 p-1 rounded-xl border border-white/[0.07]" style={{ background: "rgba(255,255,255,0.03)" }}>
-          <button
-            onClick={() => setActiveTab("chat")}
-            className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-            style={{
-              background: activeTab === "chat" ? "linear-gradient(135deg, #2563eb, #6366f1)" : "transparent",
-              color: activeTab === "chat" ? "white" : "#6b7280",
-            }}
-          >
-            💬 Chat
-          </button>
-          <button
-            onClick={() => setActiveTab("dashboard")}
-            className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-            style={{
-              background: activeTab === "dashboard" ? "linear-gradient(135deg, #2563eb, #6366f1)" : "transparent",
-              color: activeTab === "dashboard" ? "white" : "#6b7280",
-            }}
-          >
-            📊 Dashboard
-          </button>
-        </div>
-
-        <button
-          onClick={() => router.push("/pact")}
-          className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-          style={{
-            background: "transparent",
-            color: "#9ca3af",
-          }}
-        >
-          🤝 Pacts
-        </button>
+<div className="flex items-center gap-1 p-1 rounded-xl border border-white/[0.07]" style={{ background: "rgba(255,255,255,0.03)" }}>
+  <button
+    onClick={() => setActiveTab("chat")}
+    className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+    style={{
+      background: activeTab === "chat" ? "linear-gradient(135deg, #2563eb, #6366f1)" : "transparent",
+      color: activeTab === "chat" ? "white" : "#6b7280",
+    }}
+  >
+    💬 Chat
+  </button>
+  <button
+    onClick={() => setActiveTab("dashboard")}
+    className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+    style={{
+      background: activeTab === "dashboard" ? "linear-gradient(135deg, #2563eb, #6366f1)" : "transparent",
+      color: activeTab === "dashboard" ? "white" : "#6b7280",
+    }}
+  >
+    📊 Dashboard
+  </button>
+  <div className="w-px h-5 bg-white/10" />
+  <button
+    onClick={() => router.push("/pact")}
+    className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+    style={{
+      background: "transparent",
+      color: "#9ca3af",
+    }}
+    onMouseEnter={e => (e.currentTarget.style.color = "white")}
+    onMouseLeave={e => (e.currentTarget.style.color = "#9ca3af")}
+  >
+    🤝 Pacts
+  </button>
+  <div className="w-px h-5 bg-white/10" />
+  <button
+    onClick={() => router.push("/vaults")}
+    className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+    style={{
+      background: "transparent",
+      color: "#9ca3af",
+    }}
+    onMouseEnter={e => (e.currentTarget.style.color = "white")}
+    onMouseLeave={e => (e.currentTarget.style.color = "#9ca3af")}
+  >
+    📈 Vaults
+  </button>
+</div>
 
         {/* Wallet info */}
         <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl border border-white/[0.07] text-xs text-gray-500" style={{ background: "rgba(255,255,255,0.02)" }}>
