@@ -43,7 +43,7 @@ const INSPIRATION = [
   {
     title: "Italy with the squad",
     story: "Four friends. Rome, Florence, Amalfi Coast. Each saving $800 to make it happen.",
-    photo: "https://images.unsplash.com/photo-1533165168526-5f04f56e8c5d?w=800&q=80",
+    photo: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80",
     avatars: ["A", "R", "K", "D"],
     colors: ["#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"],
     saved: 2100,
@@ -546,7 +546,7 @@ export default function PactPage() {
                 <p className="text-gray-600 text-xs mt-1.5">Each person saves this amount independently.</p>
               </div>
 
-              {form.goalName && form.targetEach && (
+              {(form.goalName && form.targetEach) && (
                 <div className="p-4 rounded-xl border border-purple-500/20" style={{ background: "rgba(124,58,237,0.08)" }}>
                   <p className="text-purple-400 text-xs font-semibold mb-1.5 uppercase tracking-wide">Pact summary</p>
                   <p className="text-gray-300 text-sm leading-relaxed">
