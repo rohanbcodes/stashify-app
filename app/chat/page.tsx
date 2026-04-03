@@ -239,6 +239,17 @@ export default function ChatPage() {
   </button>
 </div>
 
+<div className="w-px h-5 bg-white/10" />
+<button
+  onClick={() => router.push("/streaks")}
+  className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
+  style={{ background: "transparent", color: "#9ca3af" }}
+  onMouseEnter={e => (e.currentTarget.style.color = "white")}
+  onMouseLeave={e => (e.currentTarget.style.color = "#9ca3af")}
+>
+  🔥 Streaks
+</button>
+
         {/* Wallet info */}
         <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl border border-white/[0.07] text-xs text-gray-500" style={{ background: "rgba(255,255,255,0.02)" }}>
           <div className="w-2 h-2 rounded-full bg-blue-500" />
