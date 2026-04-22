@@ -238,15 +238,9 @@ export default function ChatPage() {
     📈 Vaults
   </button>
 </div>
+</div>
 
-<div className="w-px h-5 bg-white/10" />
-<button
-  onClick={() => router.push("/streaks")}
-  className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-  style={{ background: "transparent", color: "#9ca3af" }}
-  onMouseEnter={e => (e.currentTarget.style.color = "white")}
-  onMouseLeave={e => (e.currentTarget.style.color = "#9ca3af")}
->
+
 
       {/* ── CHAT TAB ── */}
       {activeTab === "chat" && (
