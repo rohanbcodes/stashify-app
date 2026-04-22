@@ -247,15 +247,6 @@ export default function ChatPage() {
   onMouseEnter={e => (e.currentTarget.style.color = "white")}
   onMouseLeave={e => (e.currentTarget.style.color = "#9ca3af")}
 >
-  🔥 Streaks
-</button>
-
-        {/* Wallet info */}
-        <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl border border-white/[0.07] text-xs text-gray-500" style={{ background: "rgba(255,255,255,0.02)" }}>
-          <div className="w-2 h-2 rounded-full bg-blue-500" />
-          0xb152...594bD
-        </div>
-      </div>
 
       {/* ── CHAT TAB ── */}
       {activeTab === "chat" && (
