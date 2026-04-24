@@ -124,7 +124,7 @@ function useReveal() {
 }
 
 /* ─── 3D TILT ─── */
-function useTilt(ref: React.RefObject<HTMLDivElement>, strength = 10) {
+function useTilt(ref: React.RefObject<HTMLDivElement | null>, strength = 10) {
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current; if (!el) return;
     const r = el.getBoundingClientRect();
@@ -169,7 +169,7 @@ function Particles() {
 
 /* ─── INSPIRATION CARD ─── */
 function InspoCard({ item, onUse }: { item: typeof INSPO[0]; onUse: () => void }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [hovered, setHovered] = useState(false);
   const tilt = useTilt(ref, 8);
   const pct = Math.round((item.saved / item.target) * 100);
@@ -178,7 +178,7 @@ function InspoCard({ item, onUse }: { item: typeof INSPO[0]; onUse: () => void }
     <div ref={ref} style={{ position:"relative", borderRadius:"22px", overflow:"hidden", cursor:"pointer", height:"360px", transition:"transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease", transformStyle:"preserve-3d", boxShadow: hovered ? `0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px ${item.accent}44` : "0 8px 32px rgba(0,0,0,0.4)" }}
       {...tilt}
       onMouseEnter={e => { setHovered(true); tilt.onMouseMove(e); }}
-      onMouseLeave={e => { setHovered(false); tilt.onMouseLeave(e); }}
+      onMouseLeave={() => { setHovered(false); tilt.onMouseLeave(); }}
       onClick={onUse}>
 
       {/* Photo */}
