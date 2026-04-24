@@ -373,32 +373,48 @@ function MyPactCard({ pact }: { pact: Pact }) {
   const bothDone = myPct>=1 && themPct>=1;
   const sc = { active:{ l:"Active", c:"#60a5fa", bg:"rgba(96,165,250,0.1)", b:"rgba(96,165,250,0.2)" }, pending:{ l:"Pending", c:"#fbbf24", bg:"rgba(251,191,36,0.08)", b:"rgba(251,191,36,0.2)" }, completed:{ l:"Complete", c:"#4ade80", bg:"rgba(74,222,128,0.08)", b:"rgba(74,222,128,0.2)" } }[pact.status];
   return (
-    <div style={{ background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:"20px", padding:"24px 28px", transition:"border-color 0.3s" }}
-      onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor="rgba(99,102,241,0.28)"}
-      onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,0.07)"}>
-      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"20px" }}>
-        <div>
-          <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"17px", letterSpacing:"-.02em", marginBottom:"4px" }}>{pact.goalName}</div>
-          <div style={{ fontSize:"12px", color:"#6b7280" }}>Pact with {pact.partnerAddress} · {pact.createdAt}</div>
-        </div>
-        <span style={{ fontSize:"11px", fontWeight:700, padding:"4px 11px", borderRadius:"100px", color:sc.c, background:sc.bg, border:`1px solid ${sc.b}` }}>{sc.l}</span>
-      </div>
-      <div style={{ display:"flex", gap:"16px", marginBottom:"18px" }}>
-        {[{ label:"You", contrib:pact.myContrib, pct:myPct, c:"#6366f1" },{ label:"Partner", contrib:pact.partnerContrib, pct:themPct, c:"#8b5cf6" }].map(p => (
-          <div key={p.label} style={{ flex:1 }}>
-            <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"6px" }}>
-              <span style={{ fontSize:"12px", color:"#6b7280" }}>{p.label}</span>
-              <span style={{ fontSize:"12px", fontFamily:"var(--FD)", fontWeight:700, color:p.c }}>${p.contrib} / ${pact.target}</span>
-            </div>
-            <div style={{ height:"5px", borderRadius:"3px", background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
-              <div style={{ height:"100%", width:`${p.pct*100}%`, background:`linear-gradient(90deg,${p.c}88,${p.c})`, borderRadius:"3px", transition:"width 1s ease" }} />
-            </div>
+    <div style={{ background:"linear-gradient(135deg,rgba(99,102,241,0.06),rgba(139,92,246,0.04))", border:`1px solid ${pact.status==="completed"?"rgba(74,222,128,0.2)":pact.status==="pending"?"rgba(251,191,36,0.2)":"rgba(99,102,241,0.22)"}`, borderRadius:"20px", overflow:"hidden", transition:"box-shadow 0.3s, transform 0.3s", position:"relative" }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow="0 8px 40px rgba(99,102,241,0.12)"; (e.currentTarget as HTMLElement).style.transform="translateY(-2px)"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow="none"; (e.currentTarget as HTMLElement).style.transform="translateY(0)"; }}>
+
+      {/* Top accent line */}
+      <div style={{ height:"2px", background: pact.status==="completed" ? "linear-gradient(90deg,#4ade80,#22d3ee)" : pact.status==="pending" ? "linear-gradient(90deg,#fbbf24,#f59e0b)" : "linear-gradient(90deg,#6366f1,#8b5cf6)" }} />
+
+      <div style={{ padding:"24px 28px" }}>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"24px" }}>
+          <div>
+            <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"20px", letterSpacing:"-.03em", marginBottom:"5px" }}>{pact.goalName}</div>
+            <div style={{ fontSize:"12px", color:"#6b7280" }}>With {pact.partnerAddress} · {pact.createdAt}</div>
           </div>
-        ))}
-      </div>
-      <div style={{ padding:"11px 16px", borderRadius:"10px", background:"rgba(255,255,255,0.02)", border:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", gap:"8px" }}>
-        <span style={{ color:bothDone?"#4ade80":"#fbbf24" }}>{Ic.lock}</span>
-        <p style={{ fontSize:"12px", color:"#6b7280" }}>{bothDone ? <span style={{ color:"#4ade80", fontWeight:600 }}>Both targets hit — funds unlockable</span> : "Funds locked until both parties reach their target"}</p>
+          <span style={{ fontSize:"11px", fontWeight:700, padding:"5px 14px", borderRadius:"100px", color:sc.c, background:sc.bg, border:`1px solid ${sc.b}`, letterSpacing:".04em" }}>{sc.l}</span>
+        </div>
+
+        {/* Progress bars — more visual */}
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"12px", marginBottom:"18px" }}>
+          {[
+            { label:"You", contrib:pact.myContrib, pct:myPct, c:"#6366f1", grad:"linear-gradient(90deg,#4f46e5,#818cf8)" },
+            { label:"Partner", contrib:pact.partnerContrib, pct:themPct, c:"#8b5cf6", grad:"linear-gradient(90deg,#7c3aed,#a78bfa)" }
+          ].map(p => (
+            <div key={p.label} style={{ padding:"16px 18px", borderRadius:"14px", background:"rgba(0,0,0,0.25)", border:"1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:"10px" }}>
+                <span style={{ fontSize:"11px", color:"#6b7280", fontWeight:600, letterSpacing:".06em", textTransform:"uppercase" }}>{p.label}</span>
+                <span style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"16px", color:p.c }}>${p.contrib}<span style={{ fontSize:"11px", color:"#6b7280", fontWeight:400 }}> / ${pact.target}</span></span>
+              </div>
+              <div style={{ height:"6px", borderRadius:"3px", background:"rgba(255,255,255,0.06)", overflow:"hidden" }}>
+                <div style={{ height:"100%", width:`${p.pct*100}%`, background:p.grad, borderRadius:"3px", transition:"width 1s cubic-bezier(0.23,1,0.32,1)", boxShadow:`0 0 8px ${p.c}66` }} />
+              </div>
+              <div style={{ marginTop:"8px", fontSize:"12px", fontFamily:"var(--FD)", fontWeight:700, color:p.pct>=1?"#4ade80":p.c }}>{p.pct>=1?"Complete":Math.round(p.pct*100)+"%"}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Lock status */}
+        <div style={{ padding:"12px 16px", borderRadius:"12px", background: bothDone?"rgba(74,222,128,0.08)":"rgba(255,255,255,0.02)", border: bothDone?"1px solid rgba(74,222,128,0.2)":"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", gap:"10px", transition:"all 0.4s" }}>
+          <span style={{ color:bothDone?"#4ade80":"#fbbf24", flexShrink:0 }}>{Ic.lock}</span>
+          <p style={{ fontSize:"12px", color: bothDone?"#4ade80":"#6b7280", lineHeight:1.6, fontWeight: bothDone?600:400 }}>
+            {bothDone ? "Both targets hit — funds are now unlockable" : pact.status==="pending" ? "Waiting for your partner to accept" : "Funds locked until both parties reach their target"}
+          </p>
+        </div>
       </div>
     </div>
   );
