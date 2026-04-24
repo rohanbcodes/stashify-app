@@ -167,7 +167,103 @@ function TiltCard({ children, style = {}, className = "" }: { children: React.Re
   );
 }
 
-/* ─────────────── MAIN ─────────────── */
+/* ─────────────── FAQ ACCORDION ─────────────── */
+function FAQSection() {
+  const [open, setOpen] = useState<number | null>(null);
+  const items = [
+    {
+      q: "Do I need to know anything about crypto?",
+      a: "Not at all. Stashify handles everything behind the scenes — wallets, keys, blockchain transactions. You just type what you want to save for in plain English. No technical knowledge required.",
+    },
+    {
+      q: "Is my money safe?",
+      a: "Yes. Your funds are held in an audited smart contract on Base blockchain — not on our servers. We never have custody of your money. You can withdraw at any time, and only you control your vault.",
+    },
+    {
+      q: "What currency does Stashify use?",
+      a: "Stashify uses USDC — a dollar-pegged stablecoin issued by Circle and Coinbase. $1 USDC = $1 USD, always. No volatility, no crypto price risk. Your savings stay stable.",
+    },
+    {
+      q: "Are there any fees?",
+      a: "Stashify charges zero platform fees. The only cost is a tiny blockchain gas fee paid to the Base network — usually less than one cent per transaction.",
+    },
+    {
+      q: "Do I need a crypto wallet to use Stashify?",
+      a: "No separate wallet setup needed. Stashify uses Coinbase's CDP wallet infrastructure to create and manage a wallet for you automatically — completely invisible to you.",
+    },
+    {
+      q: "Can I withdraw my savings at any time?",
+      a: "Yes, always. Your savings are never locked (unless you create a Stash Pact with a partner). From your regular savings vault, you can withdraw any amount at any time with no penalty.",
+    },
+  ];
+
+  return (
+    <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
+      {items.map((item, i) => {
+        const isOpen = open === i;
+        return (
+          <div
+            key={i}
+            data-reveal
+            data-delay={String(i * 60)}
+            onClick={() => setOpen(isOpen ? null : i)}
+            style={{
+              borderRadius:"16px",
+              border: isOpen ? "1px solid rgba(99,102,241,0.35)" : "1px solid rgba(255,255,255,0.07)",
+              background: isOpen ? "rgba(99,102,241,0.06)" : "rgba(255,255,255,0.03)",
+              overflow:"hidden",
+              cursor:"pointer",
+              transition:"border-color 0.25s, background 0.25s",
+            }}
+            onMouseEnter={e => {
+              if (!isOpen) {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.14)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+              }
+            }}
+            onMouseLeave={e => {
+              if (!isOpen) {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
+              }
+            }}
+          >
+            {/* Question row */}
+            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"20px 24px", gap:"16px" }}>
+              <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"15px", letterSpacing:"-.01em", color: isOpen ? "#eef2ff" : "#cbd5e1", transition:"color 0.2s", lineHeight:1.4 }}>
+                {item.q}
+              </span>
+              <div style={{
+                width:"28px", height:"28px", borderRadius:"50%", flexShrink:0,
+                display:"flex", alignItems:"center", justifyContent:"center",
+                background: isOpen ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.06)",
+                border: isOpen ? "1px solid rgba(99,102,241,0.4)" : "1px solid rgba(255,255,255,0.1)",
+                transition:"all 0.3s ease",
+                transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+              }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={isOpen ? "#818cf8" : "#6b7280"} strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+              </div>
+            </div>
+
+            {/* Answer — animated */}
+            <div style={{
+              maxHeight: isOpen ? "200px" : "0",
+              opacity: isOpen ? 1 : 0,
+              overflow:"hidden",
+              transition:"max-height 0.4s cubic-bezier(0.23,1,0.32,1), opacity 0.3s ease",
+            }}>
+              <div style={{ padding:"0 24px 20px", borderTop:"1px solid rgba(99,102,241,0.12)" }}>
+                <p style={{ color:"#94a3b8", fontSize:"14px", lineHeight:1.8, paddingTop:"16px" }}>{item.a}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}/* ─────────────── MAIN ─────────────── */
 export default function Home() {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
@@ -606,21 +702,10 @@ export default function Home() {
         {/* ════════════════ FAQ ════════════════ */}
         <section id="faq" style={{ maxWidth:"660px", margin:"0 auto", padding:"0 24px 130px" }}>
           <div data-reveal style={{ textAlign:"center", marginBottom:"52px" }}>
+            <p className="lbl" style={{ color:"#818cf8", marginBottom:"16px" }}>FAQ</p>
             <h2 style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"clamp(34px,4.5vw,50px)", letterSpacing:"-.04em" }}>Questions? Answered.</h2>
           </div>
-          <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
-            {[
-              { q:"Do I need to know anything about crypto?", a:"Not at all. Stashify handles everything behind the scenes. You just type what you want to save for." },
-              { q:"Is my money safe?", a:"Your funds are held in a smart contract on Base blockchain — not on our servers. You have full control and can withdraw at any time." },
-              { q:"What currency does Stashify use?", a:"Stashify uses USDC — a dollar-pegged stablecoin. $1 USDC = $1 USD. No volatility, no surprises." },
-              { q:"Are there any fees?", a:"Stashify charges zero fees. The only cost is a tiny blockchain gas fee — usually less than a cent." },
-            ].map((item,i) => (
-              <div key={item.q} className="card" data-reveal data-delay={String(i*80)} style={{ padding:"24px 28px" }}>
-                <h3 style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"16px", letterSpacing:"-.02em", marginBottom:"10px" }}>{item.q}</h3>
-                <p style={{ color:"var(--t2)", fontSize:"14px", lineHeight:1.8 }}>{item.a}</p>
-              </div>
-            ))}
-          </div>
+          <FAQSection />
         </section>
 
         {/* ════════════════ FINAL CTA ════════════════ */}
@@ -643,18 +728,25 @@ export default function Home() {
         </section>
 
         {/* ════════════════ FOOTER ════════════════ */}
-        <footer style={{ borderTop:"1px solid rgba(255,255,255,.05)", padding:"28px 40px" }}>
-          <div style={{ maxWidth:"1100px", margin:"0 auto", display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"space-between", gap:"16px" }}>
+        <footer style={{ borderTop:"1px solid rgba(255,255,255,.08)", padding:"36px 40px", background:"rgba(255,255,255,.015)" }}>
+          <div style={{ maxWidth:"1100px", margin:"0 auto", display:"flex", flexWrap:"wrap", alignItems:"center", justifyContent:"space-between", gap:"20px" }}>
             <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
-              <Logo size={20} />
-              <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"13px", color:"#6b7280" }}>Stashify</span>
+              <Logo size={22} />
+              <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"14px", color:"#eef2ff" }}>Stashify</span>
             </div>
-            <div style={{ display:"flex", gap:"24px" }}>
-              {["Built on Base","Secured by smart contracts","Made in Singapore"].map(t => (
-                <span key={t} style={{ color:"#1f2937", fontSize:"12px" }}>{t}</span>
+            <div style={{ display:"flex", gap:"20px", flexWrap:"wrap" }}>
+              {[
+                { label:"Built on Base", color:"#60a5fa" },
+                { label:"Smart contract secured", color:"#a78bfa" },
+                { label:"Made in Singapore", color:"#4ade80" },
+              ].map(item => (
+                <div key={item.label} style={{ display:"flex", alignItems:"center", gap:"6px" }}>
+                  <span style={{ width:"5px", height:"5px", borderRadius:"50%", background:item.color, display:"inline-block", opacity:0.8 }} />
+                  <span style={{ color:"#6b7280", fontSize:"12px", fontWeight:500 }}>{item.label}</span>
+                </div>
               ))}
             </div>
-            <span style={{ color:"#111827", fontSize:"12px" }}>© 2026 Stashify</span>
+            <span style={{ color:"#4b5563", fontSize:"12px" }}>© 2026 Stashify</span>
           </div>
         </footer>
       </main>
