@@ -311,7 +311,7 @@ export default function ChatPage() {
         }
         .input-wrap {
           max-width:720px; margin:0 auto;
-          display:flex; align-items:flex-end; gap:12px;
+          display:flex; align-items:center; gap:12px;
           padding:12px 16px;
           border-radius:18px;
           border:1px solid rgba(255,255,255,.09);
