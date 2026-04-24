@@ -330,9 +330,23 @@ export default function Home() {
           </div>
           <nav style={{ display: "flex", gap: "2px" }}>
             {[["How it works","#how"],["Why Stashify","#why"],["FAQ","#faq"]].map(([l,h]) => (
-              <a key={h} href={h} style={{ color:"var(--t2)", fontSize:"14px", fontWeight:500, padding:"8px 15px", borderRadius:"100px", textDecoration:"none", transition:"color .2s,background .2s" }}
-                onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.color="var(--t1)";(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.05)";}}
-                onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.color="var(--t2)";(e.currentTarget as HTMLElement).style.background="transparent";}}>{l}</a>
+  <a key={h} href={h} style={{
+    color:"var(--t2)", fontSize:"14px", fontWeight:500,
+    padding:"8px 18px", borderRadius:"100px", textDecoration:"none",
+    border:"1px solid rgba(255,255,255,0.09)",
+    background:"rgba(255,255,255,0.04)",
+    transition:"color .2s, background .2s, border-color .2s",
+  }}
+    onMouseEnter={e=>{
+      (e.currentTarget as HTMLElement).style.color="var(--t1)";
+      (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.08)";
+      (e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,.16)";
+    }}
+    onMouseLeave={e=>{
+      (e.currentTarget as HTMLElement).style.color="var(--t2)";
+      (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.04)";
+      (e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,.09)";
+    }}>{l}</a>
             ))}
           </nav>
           <MagBtn className="btn-p" onClick={() => router.push("/chat")} style={{ padding:"10px 22px", fontSize:"13px" }}>
