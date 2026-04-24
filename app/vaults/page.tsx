@@ -110,13 +110,13 @@ const VAULTS = [
     link: "https://app.morpho.org",
   },
   {
-    id: "aerodrome", name: "Aerodrome USDC Pool", protocol: "Aerodrome",
-    mark: <AerodromeMark />, apy: 7.40, tvl: 120_000_000, risk: 3,
+    id: "aerodrome", name: "Aerodrome USDC/WETH Pool", protocol: "Aerodrome",
+    mark: <AerodromeMark />, apy: 8.18, tvl: 14_000_000, risk: 3,
     riskLabel: "Medium", chain: "Base", type: "Liquidity Pool",
     color: "#FF4D8D", light: "#f472b6",
     abg: "rgba(255,77,141,.06)", abord: "rgba(255,77,141,.2)",
     badge: "DEX yield", badgeC: "#f472b6", badgeBg: "rgba(244,114,182,.1)",
-    desc: "Earn trading fees by providing USDC liquidity to Aerodrome — Base's central DEX and liquidity hub. Yield comes from trading volume, not lending — a different risk profile.",
+    desc: "Earn trading fees from the USDC/WETH pool on Aerodrome — Base's largest DEX by volume. Risk-rated B by Exponential. Yield comes from swap fees, not lending — a genuinely different return mechanic.",
     highlights: ["Fee-based yield (not lending)","Base's largest DEX by volume","No borrower risk","Earn from every swap","Different yield mechanic"],
     howItWorks: "You add USDC to Aerodrome's stable liquidity pool. Every time a trader swaps through this pool, a small fee is distributed to liquidity providers. You earn from trading volume.",
     riskRows: [["Smart contract","Medium"],["Liquidity","Low"],["Rate volatility","Higher"],["Protocol","Low"]],
@@ -302,6 +302,20 @@ export default function VaultsPage() {
         .cmp-table th{color:var(--t2);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
         .cmp-table tr:last-child td{border:none;}
         .cmp-table tr:hover td{background:rgba(255,255,255,.02);}
+
+        /* HERO ENERGY BADGE */
+        .live-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:100px;border:1px solid rgba(74,222,128,.2);background:rgba(74,222,128,.06);color:#4ade80;margin-bottom:22px;}
+
+        /* APY SPOTLIGHT */
+        @keyframes apyPulse{0%,100%{text-shadow:0 0 20px rgba(96,165,250,.4)}50%{text-shadow:0 0 40px rgba(96,165,250,.8),0 0 80px rgba(139,92,246,.3)}}
+        .apy-spotlight{animation:apyPulse 3s ease-in-out infinite;}
+
+        /* VAULT CARD ENTRANCE */
+        @keyframes vaultSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+        /* RATE LIVE PULSE */
+        @keyframes ratePulse{0%,100%{opacity:1}50%{opacity:.4}}
+        .rate-live{animation:ratePulse 2s ease-in-out infinite;}
       `}</style>
 
       <div className="vo1" style={{ zIndex:0 }} />
@@ -332,30 +346,34 @@ export default function VaultsPage() {
         </nav>
 
         {/* ══ HERO ══ */}
-        <section style={{ maxWidth:"1100px", margin:"0 auto", padding:"72px 36px 48px" }}>
-          <div style={{ maxWidth:"580px" }}>
-            <div className="vl vl1" style={{ display:"inline-flex", alignItems:"center", gap:"8px", fontSize:"11px", fontWeight:600, letterSpacing:".12em", textTransform:"uppercase", color:"#4ade80", padding:"6px 14px", borderRadius:"100px", border:"1px solid rgba(74,222,128,.2)", background:"rgba(74,222,128,.06)", marginBottom:"22px" }}>
-              <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#4ade80", display:"inline-block" }} />
-              4 curated vaults · All on Base · USDC only
+         <section style={{ maxWidth:"1100px", margin:"0 auto", padding:"72px 36px 48px" }}>
+          <div style={{ maxWidth:"640px" }}>
+            <div className="vl vl1 live-badge">
+              <span className="rate-live" style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#4ade80", display:"inline-block" }} />
+              Rates updated live · Base ecosystem · USDC only
             </div>
             <h1 className="vl vl2" style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"clamp(46px,6.5vw,76px)", letterSpacing:"-.04em", lineHeight:.97, marginBottom:"20px" }}>
               Put your savings<br /><span className="gt">to work.</span>
             </h1>
-            <p className="vl vl3" style={{ color:"var(--t2)", fontSize:"17px", lineHeight:1.72, maxWidth:"440px", fontWeight:400, marginBottom:"36px" }}>
-              Discover curated DeFi vaults that earn yield on your USDC. Every vault is vetted, audited, and built on Base. Zero volatility — all returns paid in USDC.
+            <p className="vl vl3" style={{ color:"var(--t2)", fontSize:"17px", lineHeight:1.72, maxWidth:"460px", fontWeight:400, marginBottom:"36px" }}>
+              Your USDC sitting idle is money left on the table. These four curated vaults — all on Base, all audited — turn your savings into income. Pick your risk level and start earning today.
             </p>
-            <div className="vl vl4" style={{ display:"flex", gap:"36px", flexWrap:"wrap" }}>
-              {[
-                { lbl:"Up to",       val:"10.8%", sub:"APY available",     c:"#60a5fa" },
-                { lbl:"All vaults",  val:"USDC",  sub:"No volatility",     c:"#a78bfa" },
-                { lbl:"Total TVL",   val:"$81B+", sub:"Combined liquidity", c:"#4ade80" },
-              ].map(s => (
-                <div key={s.lbl}>
-                  <div style={{ fontSize:"11px", color:"var(--t2)", fontWeight:500, letterSpacing:".08em", textTransform:"uppercase", marginBottom:"4px" }}>{s.lbl}</div>
-                  <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"30px", letterSpacing:"-.03em", color:s.c, lineHeight:1 }}>{s.val}</div>
-                  <div style={{ fontSize:"12px", color:"var(--t2)", marginTop:"3px" }}>{s.sub}</div>
-                </div>
-              ))}
+            <div className="vl vl4" style={{ display:"flex", gap:"36px", flexWrap:"wrap", alignItems:"flex-end" }}>
+              <div>
+                <div style={{ fontSize:"11px", color:"var(--t2)", fontWeight:500, letterSpacing:".08em", textTransform:"uppercase", marginBottom:"4px" }}>Best available</div>
+                <div className="apy-spotlight" style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"42px", letterSpacing:"-.04em", color:"#60a5fa", lineHeight:1 }}>10.8%</div>
+                <div style={{ fontSize:"12px", color:"var(--t2)", marginTop:"3px" }}>APY · Morpho</div>
+              </div>
+              <div>
+                <div style={{ fontSize:"11px", color:"var(--t2)", fontWeight:500, letterSpacing:".08em", textTransform:"uppercase", marginBottom:"4px" }}>Safest option</div>
+                <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"42px", letterSpacing:"-.04em", color:"#a78bfa", lineHeight:1 }}>4.7%</div>
+                <div style={{ fontSize:"12px", color:"var(--t2)", marginTop:"3px" }}>APY · Coinbase</div>
+              </div>
+              <div>
+                <div style={{ fontSize:"11px", color:"var(--t2)", fontWeight:500, letterSpacing:".08em", textTransform:"uppercase", marginBottom:"4px" }}>All vaults</div>
+                <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"42px", letterSpacing:"-.04em", color:"#4ade80", lineHeight:1 }}>USDC</div>
+                <div style={{ fontSize:"12px", color:"var(--t2)", marginTop:"3px" }}>No price volatility</div>
+              </div>
             </div>
           </div>
         </section>
