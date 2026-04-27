@@ -343,24 +343,33 @@ function SessionSummary({ msgs }: { msgs: Msg[] }) {
 
 /* ─────────────── GOAL PROGRESS CHIP ─────────────── */
 function GoalChip({ goals, totalSaved, onClick }: { goals: Goal[]; totalSaved: number; onClick: () => void }) {
-  if (goals.length === 0) return null;
   const topGoal = goals[0];
-  const pct = Math.min((topGoal.saved / topGoal.target) * 100, 100);
+  const pct = topGoal ? Math.min((topGoal.saved / topGoal.target) * 100, 100) : 0;
   return (
-    <div onClick={onClick} style={{ display:"flex", alignItems:"center", gap:"8px", padding:"5px 12px", borderRadius:"100px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.2)", cursor:"pointer", transition:"all 0.2s" }}
-      onMouseEnter={e => (e.currentTarget as HTMLElement).style.background="rgba(99,102,241,.16)"}
+    <div onClick={onClick} style={{ display:"flex", alignItems:"center", gap:"8px", padding:"6px 14px", borderRadius:"100px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.2)", cursor:"pointer", transition:"all 0.2s" }}
+      onMouseEnter={e => (e.currentTarget as HTMLElement).style.background="rgba(99,102,241,.18)"}
       onMouseLeave={e => (e.currentTarget as HTMLElement).style.background="rgba(99,102,241,.1)"}>
-      <div style={{ position:"relative", width:"22px", height:"22px" }}>
-        <svg width="22" height="22" style={{ transform:"rotate(-90deg)", position:"absolute" }}>
-          <circle cx="11" cy="11" r="8" fill="none" stroke="rgba(255,255,255,.1)" strokeWidth="2.5"/>
-          <circle cx="11" cy="11" r="8" fill="none" stroke="#6366f1" strokeWidth="2.5"
-            strokeDasharray={50.3} strokeDashoffset={50.3 * (1 - pct/100)} strokeLinecap="round"/>
-        </svg>
-      </div>
-      <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"12px", color:"#eef2ff", maxWidth:"100px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{topGoal.name}</span>
-      <span style={{ fontSize:"11px", color:"#818cf8", fontWeight:600 }}>{Math.round(pct)}%</span>
-      <div style={{ width:"1px", height:"12px", background:"rgba(255,255,255,.1)" }} />
-      <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"12px", color:"#4ade80" }}>${totalSaved.toFixed(0)}</span>
+      {topGoal ? (
+        <>
+          <div style={{ position:"relative", width:"22px", height:"22px", flexShrink:0 }}>
+            <svg width="22" height="22" style={{ transform:"rotate(-90deg)", position:"absolute" }}>
+              <circle cx="11" cy="11" r="8" fill="none" stroke="rgba(255,255,255,.1)" strokeWidth="2.5"/>
+              <circle cx="11" cy="11" r="8" fill="none" stroke="#6366f1" strokeWidth="2.5"
+                strokeDasharray={50.3} strokeDashoffset={50.3*(1-pct/100)} strokeLinecap="round"
+                style={{ transition:"stroke-dashoffset 1s ease" }}/>
+            </svg>
+          </div>
+          <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"12px", color:"#eef2ff", maxWidth:"90px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{topGoal.name}</span>
+          <span style={{ fontSize:"11px", color:"#818cf8", fontWeight:600 }}>{Math.round(pct)}%</span>
+          <div style={{ width:"1px", height:"12px", background:"rgba(255,255,255,.1)" }} />
+          <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80" }}>${totalSaved.toFixed(0)} saved</span>
+        </>
+      ) : (
+        <>
+          <span style={{ width:"7px", height:"7px", borderRadius:"50%", background:"#6366f1", display:"inline-block", opacity:0.7 }} />
+          <span style={{ fontFamily:"var(--FD)", fontWeight:600, fontSize:"12px", color:"#818cf8" }}>Start saving</span>
+        </>
+      )}
     </div>
   );
 }
@@ -534,7 +543,8 @@ export default function ChatPage() {
   }, [input, loading, msgs]);
 
   const lastAiMsg = [...msgs].reverse().find(m => m.role === "assistant");
-  const showQuickReplies = !loading && lastAiMsg && msgs.length > 2;
+  const userHasSentMessage = msgs.some(m => m.role === "user");
+  const showQuickReplies = !loading && lastAiMsg && userHasSentMessage;
   const showSessionSummary = msgs.filter(m => m.type === "tx").length >= 2;
 
   return (
@@ -552,44 +562,44 @@ export default function ChatPage() {
         ::-webkit-scrollbar { width:3px; }
         ::-webkit-scrollbar-thumb { background:rgba(99,102,241,.2); border-radius:3px; }
 
-        .app-shell { display:flex; height:100vh; overflow:hidden; position:relative; z-index:2; }
+        .app-shell { display:flex; height:100vh; overflow:hidden; position:relative; z-index:1; }
 
         /* ── SIDEBAR ── */
         .sidebar {
-          width:64px; flex-shrink:0; display:flex; flex-direction:column;
-          align-items:center; padding:16px 0; gap:4px;
-          background:rgba(4,8,15,.96);
-          border-right:1px solid rgba(255,255,255,.06);
+          width:68px; flex-shrink:0; display:flex; flex-direction:column;
+          align-items:center; padding:16px 0; gap:6px;
+          background:rgba(3,5,12,.99);
+          border-right:1px solid rgba(255,255,255,.09);
           backdrop-filter:blur(24px); z-index:20;
         }
-        .sb-logo { margin-bottom:16px; padding:8px; cursor:pointer; }
-        .sb-logo:hover { opacity:0.8; }
+        .sb-logo { margin-bottom:14px; padding:8px; cursor:pointer; transition:transform .2s; }
+        .sb-logo:hover { transform:scale(1.08); }
         .sb-btn {
-          width:44px; height:44px; border-radius:13px;
+          width:46px; height:46px; border-radius:14px;
           display:flex; align-items:center; justify-content:center;
-          color:var(--t2); cursor:pointer; border:none; background:transparent;
-          transition:color .2s, background .2s, transform .2s; position:relative;
+          color:rgba(255,255,255,.35); cursor:pointer; border:1px solid transparent; background:transparent;
+          transition:color .2s, background .2s, transform .18s, border-color .2s; position:relative;
         }
-        .sb-btn:hover { color:var(--t1); background:rgba(255,255,255,.06); transform:scale(1.08); }
-        .sb-btn:active { transform:scale(0.95); }
-        .sb-btn.active { color:white; background:rgba(99,102,241,.18); }
+        .sb-btn:hover { color:rgba(255,255,255,.95); background:rgba(255,255,255,.08); transform:scale(1.1); border-color:rgba(255,255,255,.08); }
+        .sb-btn:active { transform:scale(0.92); }
+        .sb-btn.active { color:white; background:rgba(99,102,241,.25); border-color:rgba(99,102,241,.35); }
         .sb-btn.active::before {
           content:''; position:absolute; left:-1px; top:50%; transform:translateY(-50%);
-          width:3px; height:20px; background:var(--grad); border-radius:0 3px 3px 0;
-          animation:sidebarPill 0.3s ease forwards;
+          width:3px; height:24px; background:linear-gradient(180deg,#3b82f6,#8b5cf6);
+          border-radius:0 3px 3px 0;
         }
-        @keyframes sidebarPill { from{height:0;opacity:0} to{height:20px;opacity:1} }
         .sb-tooltip {
-          position:absolute; left:58px; top:50%; transform:translateY(-50%);
-          background:rgba(8,12,24,.98); border:1px solid rgba(255,255,255,.1);
-          color:white; font-size:12px; font-weight:600; padding:5px 11px; border-radius:9px;
+          position:absolute; left:60px; top:50%;
+          transform:translateY(-50%) translateX(-6px);
+          background:rgba(4,6,14,.99); border:1px solid rgba(255,255,255,.12);
+          color:#eef2ff; font-size:12px; font-weight:600; padding:6px 12px; border-radius:10px;
           white-space:nowrap; opacity:0; pointer-events:none;
-          transition:opacity .15s, transform .15s;
-          transform:translateY(-50%) translateX(-4px);
+          transition:opacity .18s, transform .18s;
           font-family:var(--FB); z-index:100;
+          box-shadow:0 8px 24px rgba(0,0,0,.5);
         }
         .sb-btn:hover .sb-tooltip { opacity:1; transform:translateY(-50%) translateX(0); }
-        .sb-divider { width:32px; height:1px; background:rgba(255,255,255,.06); margin:6px 0; }
+        .sb-divider { width:36px; height:1px; background:rgba(255,255,255,.08); margin:8px 0; }
         .sb-bottom { margin-top:auto; display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 0 8px; }
 
         /* ── MAIN ── */
@@ -749,7 +759,7 @@ export default function ChatPage() {
       `}</style>
 
       <AmbientCanvas state={ambientState} />
-      <div className="noise" />
+      <div className="noise" style={{ zIndex:2 }} />
       <Confetti active={confettiActive} />
 
       <div className="app-shell">
@@ -840,21 +850,7 @@ export default function ChatPage() {
             </div>
           </div>
 
-          {/* Suggested prompts — only on fresh session */}
-          {msgs.length <= 3 && !loading && (
-            <div style={{ padding:"0 24px 10px", display:"flex", justifyContent:"center" }}>
-              <div style={{ maxWidth:"720px", width:"100%", display:"flex", flexWrap:"wrap", gap:"8px" }}>
-                {[
-                  "Save $50 for new Jordans",
-                  "Save $200 for a laptop",
-                  "Check my savings balance",
-                  "What are my current goals?",
-                ].map(p => (
-                  <button key={p} className="prompt-btn" onClick={() => send(p)}>{p}</button>
-                ))}
-              </div>
-            </div>
-          )}
+
 
           {/* Input */}
           <div className="input-area">
