@@ -204,28 +204,28 @@ function Sparkline({ data, color, width = 80, height = 22 }: { data: number[]; c
   const range = max - min || 1;
   const step = width / (data.length - 1);
   const points = data.map((v, i) => `${i * step},${height - ((v - min) / range) * height}`).join(" ");
+  const gradId = `spark-${color.replace("#","")}-${Math.random().toString(36).slice(2,8)}`;
   return (
     <svg width={width} height={height} style={{ display:"block" }}>
       <defs>
-        <linearGradient id={`spark-${color.replace("#","")}`} x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity="0.35"/>
           <stop offset="100%" stopColor={color} stopOpacity="0"/>
         </linearGradient>
       </defs>
       <polyline points={points} fill="none" stroke={color} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-      <polygon points={`0,${height} ${points} ${width},${height}`} fill={`url(#spark-${color.replace("#","")})`} />
+      <polygon points={`0,${height} ${points} ${width},${height}`} fill={`url(#${gradId})`} />
     </svg>
   );
 }
 
 /* ─────────────── STREAK HEATMAP ─────────────── */
 function StreakHeatmap({ activeDays }: { activeDays: number[] }) {
-  // 7 cols x 5 rows = 35 days
   const days = 35;
   return (
     <div style={{ display:"grid", gridTemplateColumns:"repeat(7, 1fr)", gap:"4px", maxWidth:"180px" }}>
       {Array.from({ length: days }).map((_, i) => {
-        const intensity = activeDays[i] ?? 0; // 0-3
+        const intensity = activeDays[i] ?? 0;
         const colors = ["rgba(255,255,255,.04)", "rgba(99,102,241,.25)", "rgba(99,102,241,.55)", "rgba(139,92,246,.85)"];
         return (
           <div key={i} style={{
@@ -233,9 +233,7 @@ function StreakHeatmap({ activeDays }: { activeDays: number[] }) {
             background: colors[intensity],
             border: intensity > 0 ? `1px solid ${intensity === 3 ? "rgba(139,92,246,.4)" : "rgba(99,102,241,.2)"}` : "1px solid rgba(255,255,255,.03)",
             transition: "transform .15s",
-          }}
-          title={intensity > 0 ? `Active day` : "No activity"}
-          />
+          }}/>
         );
       })}
     </div>
@@ -439,15 +437,15 @@ function GoalChip({ goals, totalSaved, onClick }: { goals: Goal[]; totalSaved: n
                 style={{ transition:"stroke-dashoffset 1s ease" }}/>
             </svg>
           </div>
-          <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"12px", color:"#eef2ff", maxWidth:"90px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{topGoal.name}</span>
+          <span className="goal-chip-name" style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"12px", color:"#eef2ff", maxWidth:"90px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{topGoal.name}</span>
           <span style={{ fontSize:"11px", color:"#818cf8", fontWeight:600, fontFeatureSettings:"'tnum'" }}>{Math.round(pct)}%</span>
-          <div style={{ width:"1px", height:"12px", background:"rgba(255,255,255,.1)" }} />
-          <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80", fontFeatureSettings:"'tnum'" }}>${totalSaved.toFixed(0)}</span>
+          <div style={{ width:"1px", height:"12px", background:"rgba(255,255,255,.1)" }} className="goal-chip-sep" />
+          <span className="goal-chip-amount" style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80", fontFeatureSettings:"'tnum'" }}>${totalSaved.toFixed(0)}</span>
         </>
       ) : (
         <>
           <span style={{ width:"7px", height:"7px", borderRadius:"50%", background:"#6366f1", display:"inline-block", opacity:0.7 }} />
-          <span style={{ fontFamily:"var(--FD)", fontWeight:600, fontSize:"12px", color:"#818cf8" }}>Open dashboard</span>
+          <span style={{ fontFamily:"var(--FD)", fontWeight:600, fontSize:"12px", color:"#818cf8" }}>Dashboard</span>
         </>
       )}
     </div>
@@ -467,7 +465,7 @@ function WalletChip({ address }: { address: string }) {
   return (
     <div className="wallet-chip">
       <span style={{ width:"7px", height:"7px", borderRadius:"50%", background:"#4ade80", display:"inline-block", boxShadow:"0 0 8px rgba(74,222,128,.6)" }} />
-      <span style={{ fontFamily:"var(--FM)", fontSize:"11px", color:"#cbd5e1", fontWeight:500 }}>
+      <span className="wallet-addr" style={{ fontFamily:"var(--FM)", fontSize:"11px", color:"#cbd5e1", fontWeight:500 }}>
         {address.slice(0,6)}…{address.slice(-4)}
       </span>
       <button onClick={copyAddr} className="wallet-action" title="Copy address">
@@ -580,7 +578,6 @@ export default function ChatPage() {
   const overallPct = totalTarget > 0 ? totalSaved / totalTarget : 0;
   const goalColors = ["#6366f1","#3b82f6","#8b5cf6","#4ade80","#f59e0b"];
 
-  // Activity feed derived from messages
   const activities: Activity[] = useMemo(() => {
     return msgs
       .filter(m => m.type === "tx" && m.amount && m.txHash && m.goalName)
@@ -596,10 +593,8 @@ export default function ChatPage() {
       .slice(0, 5);
   }, [msgs]);
 
-  // Mock streak heatmap data (derived loosely from session activity for realism)
   const streakDays = useMemo(() => {
     const arr = Array(35).fill(0);
-    // last 5 days have variable activity
     arr[34] = activities.length > 0 ? 3 : 0;
     arr[33] = 2; arr[32] = 1; arr[31] = 0; arr[30] = 2;
     arr[28] = 1; arr[27] = 2; arr[26] = 3; arr[24] = 1;
@@ -609,7 +604,6 @@ export default function ChatPage() {
   }, [activities.length]);
 
   const streakCount = useMemo(() => {
-    // count consecutive non-zero days from the end
     let n = 0;
     for (let i = streakDays.length - 1; i >= 0; i--) {
       if (streakDays[i] > 0) n++; else break;
@@ -617,7 +611,7 @@ export default function ChatPage() {
     return Math.max(n, activities.length > 0 ? 1 : 0);
   }, [streakDays, activities.length]);
 
-  // Initialize: fetch goals first
+  // Initialize: fetch goals
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
@@ -636,10 +630,26 @@ export default function ChatPage() {
     })();
   }, []);
 
-  // Auto-focus input on mount
+  // Auto-focus input on mount (desktop only — focusing on mobile triggers keyboard)
   useEffect(() => {
-    setTimeout(() => inputRef.current?.focus(), 200);
+    if (typeof window === "undefined") return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) {
+      setTimeout(() => inputRef.current?.focus(), 200);
+    }
   }, []);
+
+  // Lock body scroll only when dashboard is open on mobile
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile && showDash) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [showDash]);
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior:"smooth" }); }, [msgs, loading]);
 
@@ -722,15 +732,19 @@ export default function ChatPage() {
           --FB:'Instrument Sans',sans-serif;
           --FM:'JetBrains Mono', ui-monospace, monospace;
         }
-        body { background:var(--bg); color:var(--t1); font-family:var(--FB); overflow:hidden; height:100vh; }
+        html, body { background:var(--bg); color:var(--t1); font-family:var(--FB); height:100%; height:100dvh; }
+        body { overflow:hidden; }
         ::-webkit-scrollbar { width:3px; }
         ::-webkit-scrollbar-thumb { background:rgba(99,102,241,.2); border-radius:3px; }
 
         .gt { background: linear-gradient(110deg, #60a5fa 0%, #818cf8 42%, #c084fc 85%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-        .app-shell { display:flex; height:100vh; overflow:hidden; position:relative; z-index:1; }
+        .app-shell {
+          display:flex; height:100vh; height:100dvh;
+          overflow:hidden; position:relative; z-index:1;
+        }
 
-        /* ── SIDEBAR ── */
+        /* ── SIDEBAR (desktop only) ── */
         .sidebar {
           width:72px; flex-shrink:0; display:flex; flex-direction:column;
           align-items:center; padding:18px 0 14px; gap:4px;
@@ -778,22 +792,18 @@ export default function ChatPage() {
         .sb-btn:hover .sb-tooltip { opacity:1; transform:translateY(-50%) translateX(0); }
         .sb-divider { width:32px; height:1px; background:rgba(255,255,255,.06); margin:10px 0; }
         .sb-bottom { margin-top:auto; display:flex; flex-direction:column; align-items:center; gap:8px; }
-        .sb-status {
-          display:flex; flex-direction:column; align-items:center; gap:5px;
-          padding:8px 0;
-        }
-        .sb-status-dot {
-          width:6px; height:6px; border-radius:50%; background:#4ade80;
-          box-shadow:0 0 8px rgba(74,222,128,.6); animation: pulse 2.4s ease-in-out infinite;
-        }
+        .sb-status { display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 0; }
+        .sb-status-dot { width:6px; height:6px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px rgba(74,222,128,.6); animation: pulse 2.4s ease-in-out infinite; }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-        .sb-status-label {
-          font-family:var(--FB); font-size:8px; font-weight:700;
-          letter-spacing:.18em; color:#4ade80;
-        }
+        .sb-status-label { font-family:var(--FB); font-size:8px; font-weight:700; letter-spacing:.18em; color:#4ade80; }
 
         /* ── MAIN ── */
-        .main-area { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; }
+        .main-area {
+          flex:1; display:flex; flex-direction:column;
+          overflow:hidden; position:relative;
+          min-width:0;
+          min-height:0;
+        }
 
         /* ── TOP BAR ── */
         .top-bar {
@@ -839,10 +849,7 @@ export default function ChatPage() {
           animation: emptyIn .7s cubic-bezier(.23,1,.32,1);
         }
         @keyframes emptyIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
-        .empty-logo {
-          margin-bottom:20px; position:relative;
-          animation: float 4s ease-in-out infinite;
-        }
+        .empty-logo { margin-bottom:20px; position:relative; animation: float 4s ease-in-out infinite; }
         .empty-logo::after {
           content:''; position:absolute; inset:-12px; border-radius:24px;
           background:radial-gradient(circle at center, rgba(99,102,241,.25), transparent 60%);
@@ -879,7 +886,12 @@ export default function ChatPage() {
         }
 
         /* ── MESSAGES ── */
-        .msgs { flex:1; overflow-y:auto; padding:24px 0 16px; display:flex; flex-direction:column; }
+        .msgs {
+          flex:1; overflow-y:auto;
+          padding:24px 0 16px;
+          display:flex; flex-direction:column;
+          min-height:0;
+        }
         .msgs-inner {
           max-width:720px; margin:0 auto; width:100%; padding:0 24px;
           display:flex; flex-direction:column; gap:18px;
@@ -938,7 +950,7 @@ export default function ChatPage() {
         }
         .input-ta {
           flex:1; background:transparent; border:none; outline:none;
-          color:var(--t1); font-family:var(--FB); font-size:14px; line-height:1.6;
+          color:var(--t1); font-family:var(--FB); font-size:16px; line-height:1.6;
           resize:none; min-height:24px; max-height:120px; scrollbar-width:none;
           padding-top:6px; padding-bottom:6px;
         }
@@ -968,18 +980,18 @@ export default function ChatPage() {
           background:rgba(255,255,255,.025); color:#6b7280;
         }
 
-        /* ── DASHBOARD PANEL ── */
+        /* ── DASHBOARD PANEL (desktop) ── */
         .dash-backdrop {
-          position:absolute; inset:0; background:rgba(0,0,0,.4);
-          opacity:0; pointer-events:none; transition:opacity .35s; z-index:25;
+          position:fixed; inset:0; background:rgba(0,0,0,.4);
+          opacity:0; pointer-events:none; transition:opacity .35s; z-index:90;
         }
         .dash-backdrop.open { opacity:1; pointer-events:auto; }
 
         .dash-panel {
-          position:absolute; top:0; right:0; bottom:0; width:400px;
-          background:rgba(6,10,20,.97); backdrop-filter:blur(36px);
+          position:fixed; top:0; right:0; bottom:0; width:400px;
+          background:rgba(6,10,20,.98); backdrop-filter:blur(36px);
           border-left:1px solid rgba(255,255,255,.07);
-          z-index:30; display:flex; flex-direction:column;
+          z-index:100; display:flex; flex-direction:column;
           transform:translateX(100%);
           transition:transform .45s cubic-bezier(.23,1,.32,1);
           box-shadow:-20px 0 60px rgba(0,0,0,.4);
@@ -989,8 +1001,13 @@ export default function ChatPage() {
           padding:20px 24px 16px; border-bottom:1px solid rgba(255,255,255,.06);
           display:flex; align-items:center; justify-content:space-between;
           background:linear-gradient(180deg, rgba(99,102,241,.06), transparent);
+          flex-shrink:0;
         }
-        .dash-body { flex:1; overflow-y:auto; padding:20px 24px 32px; }
+        .dash-body {
+          flex:1; overflow-y:auto;
+          padding:20px 24px 32px;
+          -webkit-overflow-scrolling: touch;
+        }
 
         .dash-section { margin-bottom: 24px; }
         .dash-section-label {
@@ -1000,7 +1017,6 @@ export default function ChatPage() {
           margin-bottom:12px;
         }
 
-        /* ── HERO TOTAL CARD ── */
         .total-hero {
           position:relative; padding: 24px 22px 22px;
           border-radius:20px; overflow:hidden;
@@ -1035,7 +1051,6 @@ export default function ChatPage() {
           color:#4ade80;
         }
 
-        /* ── GOAL CARD ── */
         .goal-card {
           background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.07);
           border-radius:14px; padding:16px; margin-bottom:10px;
@@ -1054,7 +1069,6 @@ export default function ChatPage() {
           display:inline-flex; align-items:center; gap:3px; text-decoration:none;
         }
 
-        /* ── ACTIVITY ROW ── */
         .activity-row {
           display:flex; align-items:center; gap:12px;
           padding:10px 0; border-bottom:1px solid rgba(255,255,255,.04);
@@ -1070,7 +1084,6 @@ export default function ChatPage() {
           color:#4ade80;
         }
 
-        /* ── QA BUTTON ── */
         .qa-btn {
           width:100%; padding:11px 14px; border-radius:12px;
           background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.07);
@@ -1080,7 +1093,17 @@ export default function ChatPage() {
         }
         .qa-btn:hover { border-color:rgba(99,102,241,.3); color:#eef2ff; background:rgba(99,102,241,.06); }
 
-        /* ── ANIMATIONS ── */
+        .dash-close {
+          width:36px; height:36px; border-radius:10px;
+          display:flex; align-items:center; justify-content:center;
+          background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+          cursor:pointer; color:#cbd5e1;
+          transition:all 0.2s;
+          z-index:5; position:relative;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .dash-close:active, .dash-close:hover { background:rgba(255,255,255,.12); color:#eef2ff; }
+
         @keyframes wave   { 0%,100%{height:6px} 50%{height:22px} }
         @keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }
         @keyframes msgIn  { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
@@ -1091,62 +1114,98 @@ export default function ChatPage() {
           background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size:256px; }
 
-        /* ── MOBILE BOTTOM NAV ── */
+        /* ── MOBILE NAV ── */
         .mobile-nav {
-          display:none; position:fixed; bottom:0; left:0; right:0; z-index:50;
-          background:rgba(4,8,15,.96); border-top:1px solid rgba(255,255,255,.07);
-          backdrop-filter:blur(20px); padding:10px 0 calc(env(safe-area-inset-bottom, 0px) + 10px);
+          display:none;
+          position:fixed; bottom:0; left:0; right:0;
+          z-index:40;
+          background:rgba(4,8,15,.97);
+          border-top:1px solid rgba(255,255,255,.07);
+          backdrop-filter:blur(20px);
+          padding:8px 0 calc(env(safe-area-inset-bottom, 0px) + 8px);
         }
         .mobile-nav-btn {
-          flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;
+          flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
           background:none; border:none; cursor:pointer; color:var(--t2);
           font-size:10px; font-family:var(--FB); font-weight:600;
           letter-spacing:.04em; padding:4px 0;
           transition:color .2s;
+          -webkit-tap-highlight-color: transparent;
         }
         .mobile-nav-btn.active { color:#818cf8; }
 
+        /* ═══════════ MOBILE BREAKPOINTS ═══════════ */
         @media (max-width: 768px) {
           .sidebar { display:none !important; }
           .mobile-nav { display:flex !important; }
 
-          .top-bar { padding: 0 16px; height:56px; }
-          .top-title { font-size:14px !important; }
+          /* App shell: leave room for bottom nav */
+          .app-shell {
+            height:100vh; height:100dvh;
+          }
+          .main-area {
+            /* Bottom nav is ~62px including safe area */
+            padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 62px);
+          }
 
-          .wallet-chip span:nth-of-type(2) { display:none; }
+          .top-bar { padding: 0 16px; height:54px; }
+          .top-title { font-size:14px; }
 
-          .msgs { padding:20px 0 12px; }
+          /* Hide wallet chip text on mobile, keep dot + buttons only */
+          .wallet-addr { display:none !important; }
+          .wallet-chip { padding:6px 8px; }
+
+          /* Hide name & separator on goal chip on tiny screens */
+          .goal-chip { padding:5px 12px; }
+
+          .msgs { padding:16px 0 12px; }
           .msgs-inner { padding: 0 16px; gap:14px; }
 
           .bubble-user, .bubble-ai { max-width:88%; font-size:14px; }
 
-          .input-area { padding: 12px 16px calc(env(safe-area-inset-bottom, 0px) + 70px); }
+          .input-area {
+            padding: 12px 16px 14px;
+          }
           .input-wrap { padding: 8px 8px 8px 16px; }
+          .input-foot { display:none; }
 
+          /* Empty hero — much tighter on mobile */
+          .empty-hero { padding: 12px 16px 8px; }
+          .empty-prompts { grid-template-columns: 1fr; gap:8px; }
+          .empty-title { font-size: 24px; line-height: 1.1; }
+          .empty-sub { font-size: 13px; margin-bottom: 20px; }
+          .empty-logo { margin-bottom: 14px; }
+
+          /* Dashboard becomes bottom sheet */
           .dash-panel {
-            width:100% !important; height:88vh; top:auto; bottom:0;
-            border-left:none; border-top:1px solid rgba(255,255,255,.1);
+            position:fixed !important;
+            top:auto !important; left:0 !important; right:0 !important; bottom:0 !important;
+            width:100% !important;
+            height:90vh !important; height:90dvh !important;
+            border-left:none;
+            border-top:1px solid rgba(255,255,255,.1);
             border-radius:24px 24px 0 0;
             transform:translateY(100%);
+            z-index:200 !important;
           }
-          .dash-panel.open { transform:translateY(0); }
+          .dash-panel.open { transform:translateY(0) !important; }
           .dash-panel::before {
             content:''; position:absolute; top:8px; left:50%; transform:translateX(-50%);
-            width:36px; height:4px; border-radius:2px; background:rgba(255,255,255,.15);
+            width:36px; height:4px; border-radius:2px; background:rgba(255,255,255,.18);
+            z-index:10;
           }
-          .dash-header { padding-top:24px; }
+          .dash-header {
+            padding-top:24px;
+          }
+          .dash-backdrop { z-index:190 !important; }
 
-          .empty-hero { padding: 12px 20px 8px; }
-          .empty-prompts { grid-template-columns: 1fr; }
-          .empty-title { font-size: 26px !important; }
-
-          .total-num { font-size:42px !important; }
+          .total-num { font-size:42px; }
         }
 
         @media (max-width: 480px) {
           .top-bar { padding: 0 12px; }
-          .goal-chip { padding:5px 10px; }
-          .goal-chip span:nth-of-type(2) { max-width:60px; }
+          .goal-chip-name { max-width:50px; font-size:11px; }
+          .goal-chip-sep, .goal-chip-amount { display:none; }
         }
       `}</style>
 
@@ -1156,7 +1215,7 @@ export default function ChatPage() {
 
       <div className="app-shell">
 
-        {/* ════ SIDEBAR ════ */}
+        {/* ════ SIDEBAR (desktop) ════ */}
         <aside className="sidebar">
           <div className="sb-logo" onClick={() => router.push("/")} title="Stashify"><Logo size={32} /></div>
 
@@ -1193,19 +1252,22 @@ export default function ChatPage() {
 
           {/* Top bar */}
           <div className="top-bar">
-            <div style={{ display:"flex", alignItems:"center", gap:"12px" }}>
-              <div>
+            <div style={{ display:"flex", alignItems:"center", gap:"10px", minWidth:0 }}>
+              <div style={{ display:"none" }} className="mobile-logo-wrap">
+                <Logo size={26} />
+              </div>
+              <div style={{ minWidth:0 }}>
                 <div className="top-title">Stashify</div>
-                <div style={{ fontSize:"11px", color:"#4ade80", marginTop:"1px" }}>● Online · Base Sepolia</div>
+                <div style={{ fontSize:"11px", color:"#4ade80", marginTop:"1px", whiteSpace:"nowrap" }}>● Online · Base Sepolia</div>
               </div>
             </div>
-            <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
-              <GoalChip goals={goals} totalSaved={totalSaved} onClick={() => setShowDash(p => !p)} />
+            <div style={{ display:"flex", alignItems:"center", gap:"8px" }}>
+              <GoalChip goals={goals} totalSaved={totalSaved} onClick={() => setShowDash(true)} />
               <WalletChip address={WALLET_ADDRESS} />
             </div>
           </div>
 
-          {/* Body — messages container always present, hero shows inside when empty */}
+          {/* Body */}
           <div className="msgs">
             <div className="msgs-inner">
               {isEmptyState && <EmptyHero onPick={(t) => send(t)} />}
@@ -1236,7 +1298,7 @@ export default function ChatPage() {
             </div>
           </div>
 
-          {/* Input — always visible and immediately usable */}
+          {/* Input */}
           <div className="input-area">
             <div className="input-wrap">
               <textarea
@@ -1247,7 +1309,6 @@ export default function ChatPage() {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => { if (e.key==="Enter" && !e.shiftKey) { e.preventDefault(); send(); } }}
                 rows={1}
-                autoFocus
               />
               <button className="send-btn" onClick={() => send()} disabled={loading || !input.trim()}>
                 {Ic.send}
@@ -1261,201 +1322,210 @@ export default function ChatPage() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* ════ DASHBOARD ════ */}
-        <div className={`dash-backdrop ${showDash?"open":""}`} onClick={() => setShowDash(false)} />
-        <div className={`dash-panel ${showDash?"open":""}`}>
-          <div className="dash-header">
-            <div>
-              <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"17px", letterSpacing:"-.02em" }}>Dashboard</div>
-              <div style={{ fontSize:"11px", color:"#6b7280", marginTop:"2px" }}>Your savings, onchain</div>
-            </div>
-            <button onClick={() => setShowDash(false)} style={{ width:"30px", height:"30px", borderRadius:"8px", display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(255,255,255,.05)", border:"1px solid rgba(255,255,255,.08)", cursor:"pointer", color:"#6b7280", transition:"all 0.2s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.1)"; (e.currentTarget as HTMLElement).style.color="#eef2ff"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.05)"; (e.currentTarget as HTMLElement).style.color="#6b7280"; }}>
-              {Ic.close}
-            </button>
+      {/* ════ DASHBOARD — RENDERED OUTSIDE app-shell to ensure proper stacking ════ */}
+      <div
+        className={`dash-backdrop ${showDash?"open":""}`}
+        onClick={() => setShowDash(false)}
+        aria-hidden={!showDash}
+      />
+      <div
+        className={`dash-panel ${showDash?"open":""}`}
+        role="dialog"
+        aria-hidden={!showDash}
+      >
+        <div className="dash-header">
+          <div>
+            <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"17px", letterSpacing:"-.02em" }}>Dashboard</div>
+            <div style={{ fontSize:"11px", color:"#6b7280", marginTop:"2px" }}>Your savings, onchain</div>
           </div>
+          <button
+            type="button"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowDash(false); }}
+            onTouchEnd={(e) => { e.preventDefault(); setShowDash(false); }}
+            className="dash-close"
+            aria-label="Close dashboard"
+          >
+            {Ic.close}
+          </button>
+        </div>
 
-          <div className="dash-body">
+        <div className="dash-body">
 
-            {/* ─── HERO TOTAL CARD ─── */}
-            <div className="total-hero" style={{ marginBottom:"22px" }}>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"14px" }}>
-                <div>
-                  <div style={{ fontSize:"10px", fontWeight:700, color:"#6366f1", letterSpacing:".14em", textTransform:"uppercase", marginBottom:"6px" }}>Total saved</div>
-                  <div className="total-num">
-                    $<CountUp value={totalSaved} />
-                  </div>
-                  <div style={{ display:"flex", alignItems:"center", gap:"8px", marginTop:"10px" }}>
-                    <span className="delta-pill">
-                      {Ic.trendUp} <span style={{ fontFamily:"var(--FM)", fontFeatureSettings:"'tnum'" }}>${activities.reduce((s,a) => s + a.amount, 0).toFixed(0)}</span>
-                      <span style={{ opacity:.7, marginLeft:"2px" }}>this week</span>
-                    </span>
-                  </div>
+          {/* HERO TOTAL */}
+          <div className="total-hero" style={{ marginBottom:"22px" }}>
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"14px", gap:"12px" }}>
+              <div style={{ minWidth:0, flex:1 }}>
+                <div style={{ fontSize:"10px", fontWeight:700, color:"#6366f1", letterSpacing:".14em", textTransform:"uppercase", marginBottom:"6px" }}>Total saved</div>
+                <div className="total-num">
+                  $<CountUp value={totalSaved} />
                 </div>
-                <span className="live-pill">
-                  <span style={{ width:"5px", height:"5px", borderRadius:"50%", background:"#4ade80", display:"inline-block", boxShadow:"0 0 6px rgba(74,222,128,.7)", animation:"pulse 2s ease-in-out infinite" }} />
-                  Live
-                </span>
-              </div>
-
-              {/* Progress bar */}
-              <div style={{ marginTop:"4px" }}>
-                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"6px", fontSize:"11px" }}>
-                  <span style={{ color:"#6b7280" }}>{Math.round(overallPct*100)}% to target</span>
-                  <span style={{ color:"#94a3b8", fontFamily:"var(--FM)", fontFeatureSettings:"'tnum'" }}>${totalSaved.toFixed(0)} / ${totalTarget.toFixed(0)}</span>
-                </div>
-                <div style={{ height:"6px", borderRadius:"3px", background:"rgba(255,255,255,.06)", overflow:"hidden", position:"relative" }}>
-                  <div style={{ height:"100%", width:`${overallPct*100}%`, borderRadius:"3px", background:"linear-gradient(90deg, #6366f1, #a78bfa, #c084fc)", transition:"width 1.4s cubic-bezier(.23,1,.32,1)", boxShadow:"0 0 12px rgba(139,92,246,.5)" }} />
-                </div>
-              </div>
-            </div>
-
-            {/* ─── STREAK / MOMENTUM ─── */}
-            {(activities.length > 0 || goals.length > 0) && (
-              <div className="dash-section">
-                <div className="dash-section-label">
-                  <span>Momentum</span>
-                  <span style={{ display:"inline-flex", alignItems:"center", gap:"4px", color:"#fb923c", textTransform:"none", letterSpacing:0, fontSize:"11px" }}>
-                    <span style={{ display:"flex" }}>{Ic.flame}</span>
-                    <span style={{ fontWeight:700 }}>{streakCount}</span>
-                    <span style={{ color:"#6b7280", fontWeight:500 }}>day streak</span>
+                <div style={{ display:"flex", alignItems:"center", gap:"8px", marginTop:"10px", flexWrap:"wrap" }}>
+                  <span className="delta-pill">
+                    {Ic.trendUp} <span style={{ fontFamily:"var(--FM)", fontFeatureSettings:"'tnum'" }}>${activities.reduce((s,a) => s + a.amount, 0).toFixed(0)}</span>
+                    <span style={{ opacity:.7, marginLeft:"2px" }}>this week</span>
                   </span>
                 </div>
-                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"14px", borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.06)" }}>
-                  <StreakHeatmap activeDays={streakDays} />
-                  <div style={{ textAlign:"right" }}>
-                    <div style={{ fontSize:"10px", color:"#6b7280", letterSpacing:".08em", textTransform:"uppercase", fontWeight:600 }}>Last 35 days</div>
-                    <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"22px", color:"#eef2ff", marginTop:"4px", fontFeatureSettings:"'tnum'" }}>
-                      {streakDays.filter(d => d > 0).length}<span style={{ fontSize:"12px", color:"#6b7280", fontWeight:600, marginLeft:"3px" }}>days active</span>
-                    </div>
+              </div>
+              <span className="live-pill" style={{ flexShrink:0 }}>
+                <span style={{ width:"5px", height:"5px", borderRadius:"50%", background:"#4ade80", display:"inline-block", boxShadow:"0 0 6px rgba(74,222,128,.7)", animation:"pulse 2s ease-in-out infinite" }} />
+                Live
+              </span>
+            </div>
+
+            <div style={{ marginTop:"4px" }}>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"6px", fontSize:"11px" }}>
+                <span style={{ color:"#6b7280" }}>{Math.round(overallPct*100)}% to target</span>
+                <span style={{ color:"#94a3b8", fontFamily:"var(--FM)", fontFeatureSettings:"'tnum'" }}>${totalSaved.toFixed(0)} / ${totalTarget.toFixed(0)}</span>
+              </div>
+              <div style={{ height:"6px", borderRadius:"3px", background:"rgba(255,255,255,.06)", overflow:"hidden", position:"relative" }}>
+                <div style={{ height:"100%", width:`${overallPct*100}%`, borderRadius:"3px", background:"linear-gradient(90deg, #6366f1, #a78bfa, #c084fc)", transition:"width 1.4s cubic-bezier(.23,1,.32,1)", boxShadow:"0 0 12px rgba(139,92,246,.5)" }} />
+              </div>
+            </div>
+          </div>
+
+          {/* MOMENTUM */}
+          {(activities.length > 0 || goals.length > 0) && (
+            <div className="dash-section">
+              <div className="dash-section-label">
+                <span>Momentum</span>
+                <span style={{ display:"inline-flex", alignItems:"center", gap:"4px", color:"#fb923c", textTransform:"none", letterSpacing:0, fontSize:"11px" }}>
+                  <span style={{ display:"flex" }}>{Ic.flame}</span>
+                  <span style={{ fontWeight:700 }}>{streakCount}</span>
+                  <span style={{ color:"#6b7280", fontWeight:500 }}>day streak</span>
+                </span>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"14px", borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.06)", gap:"12px" }}>
+                <StreakHeatmap activeDays={streakDays} />
+                <div style={{ textAlign:"right" }}>
+                  <div style={{ fontSize:"10px", color:"#6b7280", letterSpacing:".08em", textTransform:"uppercase", fontWeight:600 }}>Last 35 days</div>
+                  <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"22px", color:"#eef2ff", marginTop:"4px", fontFeatureSettings:"'tnum'" }}>
+                    {streakDays.filter(d => d > 0).length}<span style={{ fontSize:"12px", color:"#6b7280", fontWeight:600, marginLeft:"3px" }}>days</span>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
-            {/* ─── ACTIVE GOALS ─── */}
-            {goals.length === 0 ? (
-              <div style={{ textAlign:"center", padding:"32px 20px", borderRadius:"14px", background:"rgba(255,255,255,.02)", border:"1px dashed rgba(255,255,255,.08)", marginBottom:"22px" }}>
-                <div style={{ width:"44px", height:"44px", borderRadius:"14px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.2)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 12px", color:"#818cf8" }}>{Ic.target}</div>
-                <p style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"14px", marginBottom:"6px" }}>No goals yet</p>
-                <p style={{ fontSize:"12px", color:"#6b7280", lineHeight:1.6 }}>Tell the AI what you want to save for and your first goal will appear here.</p>
-              </div>
-            ) : (
-              <div className="dash-section">
-                <div className="dash-section-label"><span>Active goals</span><span style={{ color:"#6b7280", textTransform:"none", letterSpacing:0, fontSize:"11px", fontWeight:500 }}>{goals.length}</span></div>
-                {goals.map((g, i) => {
-                  const pct = Math.min(g.saved/g.target, 1);
-                  const c = goalColors[i % goalColors.length];
-                  // Build mock historical sparkline data for the goal
-                  const sparkData = Array.from({ length: 8 }, (_, idx) => g.saved * (0.2 + 0.8 * (idx / 7)) + Math.random() * (g.saved * 0.05));
-                  const remaining = g.target - g.saved;
-                  // Estimate days to target assuming $5/day pace, very rough
-                  const daysLeft = remaining > 0 ? Math.max(1, Math.ceil(remaining / 5)) : 0;
-                  return (
-                    <div key={g.name} className="goal-card" style={{ "--gc": c } as React.CSSProperties}>
-                      <div style={{ display:"flex", alignItems:"center", gap:"12px", marginBottom:"12px" }}>
-                        <div style={{ position:"relative", flexShrink:0 }}>
-                          <Arc pct={pct} color={c} size={48} strokeWidth={4} />
-                          <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                            <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"11px", color:c, fontFeatureSettings:"'tnum'" }}>{Math.round(pct*100)}%</span>
-                          </div>
+          {/* GOALS */}
+          {goals.length === 0 ? (
+            <div style={{ textAlign:"center", padding:"32px 20px", borderRadius:"14px", background:"rgba(255,255,255,.02)", border:"1px dashed rgba(255,255,255,.08)", marginBottom:"22px" }}>
+              <div style={{ width:"44px", height:"44px", borderRadius:"14px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.2)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 12px", color:"#818cf8" }}>{Ic.target}</div>
+              <p style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"14px", marginBottom:"6px" }}>No goals yet</p>
+              <p style={{ fontSize:"12px", color:"#6b7280", lineHeight:1.6 }}>Tell the AI what you want to save for and your first goal will appear here.</p>
+            </div>
+          ) : (
+            <div className="dash-section">
+              <div className="dash-section-label"><span>Active goals</span><span style={{ color:"#6b7280", textTransform:"none", letterSpacing:0, fontSize:"11px", fontWeight:500 }}>{goals.length}</span></div>
+              {goals.map((g, i) => {
+                const pct = Math.min(g.saved/g.target, 1);
+                const c = goalColors[i % goalColors.length];
+                const sparkData = Array.from({ length: 8 }, (_, idx) => g.saved * (0.2 + 0.8 * (idx / 7)) + Math.random() * (g.saved * 0.05));
+                const remaining = g.target - g.saved;
+                const daysLeft = remaining > 0 ? Math.max(1, Math.ceil(remaining / 5)) : 0;
+                return (
+                  <div key={g.name} className="goal-card" style={{ "--gc": c } as React.CSSProperties}>
+                    <div style={{ display:"flex", alignItems:"center", gap:"12px", marginBottom:"12px" }}>
+                      <div style={{ position:"relative", flexShrink:0 }}>
+                        <Arc pct={pct} color={c} size={48} strokeWidth={4} />
+                        <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                          <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"11px", color:c, fontFeatureSettings:"'tnum'" }}>{Math.round(pct*100)}%</span>
                         </div>
-                        <div style={{ flex:1, minWidth:0 }}>
-                          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"3px" }}>
-                            <div style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"14px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{g.name}</div>
-                            <Sparkline data={sparkData} color={c} width={60} height={18} />
-                          </div>
-                          <div style={{ fontSize:"11px", color:"#6b7280", fontFeatureSettings:"'tnum'" }}>
-                            <span style={{ color:c, fontWeight:700 }}>${g.saved.toFixed(2)}</span>
-                            <span style={{ opacity:.6, margin:"0 4px" }}>/</span>
-                            <span>${g.target.toFixed(0)}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", fontSize:"10.5px", color:"#6b7280", paddingTop:"10px", borderTop:"1px solid rgba(255,255,255,.05)" }}>
-                        <span style={{ fontFeatureSettings:"'tnum'" }}>${remaining.toFixed(2)} to go {remaining > 0 && <span style={{ opacity:.6 }}>· ~{daysLeft}d at $5/day</span>}</span>
-                        <a href={`https://sepolia.basescan.org/address/${VAULT_ADDRESS}`} target="_blank" rel="noopener noreferrer" className="goal-link">
-                          BaseScan {Ic.ext}
-                        </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* ─── RECENT ACTIVITY ─── */}
-            {activities.length > 0 && (
-              <div className="dash-section">
-                <div className="dash-section-label">
-                  <span>Recent activity</span>
-                  <span style={{ color:"#6b7280", textTransform:"none", letterSpacing:0, fontSize:"11px", fontWeight:500 }}>Onchain</span>
-                </div>
-                <div style={{ borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)", padding:"4px 14px" }}>
-                  {activities.map(a => (
-                    <a key={a.id} href={`https://sepolia.basescan.org/tx/${a.txHash}`} target="_blank" rel="noopener noreferrer" className="activity-row">
-                      <div className="activity-icon">
-                        {a.type === "deposit" ? Ic.arrowDown : Ic.arrowUp}
                       </div>
                       <div style={{ flex:1, minWidth:0 }}>
-                        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline" }}>
-                          <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"13px", color:"#eef2ff" }}>
-                            {a.type === "deposit" ? "Saved to" : "Withdrew from"} <span style={{ color:"#94a3b8" }}>{a.goalName}</span>
-                          </span>
-                          <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80", fontFeatureSettings:"'tnum'" }}>+${a.amount.toFixed(2)}</span>
+                        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"3px", gap:"8px" }}>
+                          <div style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"14px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{g.name}</div>
+                          <Sparkline data={sparkData} color={c} width={56} height={18} />
                         </div>
-                        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginTop:"3px" }}>
-                          <span style={{ fontSize:"10px", color:"#475569", fontFamily:"var(--FM)" }}>{a.txHash.slice(0,10)}…</span>
-                          <span style={{ fontSize:"10px", color:"#6b7280" }}>{timeAgo(a.timestamp)}</span>
+                        <div style={{ fontSize:"11px", color:"#6b7280", fontFeatureSettings:"'tnum'" }}>
+                          <span style={{ color:c, fontWeight:700 }}>${g.saved.toFixed(2)}</span>
+                          <span style={{ opacity:.6, margin:"0 4px" }}>/</span>
+                          <span>${g.target.toFixed(0)}</span>
                         </div>
                       </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
+                    </div>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", fontSize:"10.5px", color:"#6b7280", paddingTop:"10px", borderTop:"1px solid rgba(255,255,255,.05)", gap:"8px" }}>
+                      <span style={{ fontFeatureSettings:"'tnum'" }}>${remaining.toFixed(2)} to go {remaining > 0 && <span style={{ opacity:.6 }}>· ~{daysLeft}d at $5/day</span>}</span>
+                      <a href={`https://sepolia.basescan.org/address/${VAULT_ADDRESS}`} target="_blank" rel="noopener noreferrer" className="goal-link">
+                        BaseScan {Ic.ext}
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
-            {/* ─── QUICK ACTIONS ─── */}
+          {/* ACTIVITY */}
+          {activities.length > 0 && (
             <div className="dash-section">
-              <div className="dash-section-label"><span>Quick actions</span></div>
-              <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
-                {[
-                  { label:"Check my balance", icon:Ic.target },
-                  { label:"Withdraw savings", icon:Ic.arrowUp },
-                  { label:"Save $20 now", icon:Ic.spark },
-                ].map(a => (
-                  <button key={a.label} className="qa-btn" onClick={() => { setShowDash(false); setInput(a.label); setTimeout(() => inputRef.current?.focus(), 100); }}>
-                    <span style={{ color:"#818cf8", display:"flex" }}>{a.icon}</span>
-                    <span>{a.label}</span>
-                  </button>
+              <div className="dash-section-label">
+                <span>Recent activity</span>
+                <span style={{ color:"#6b7280", textTransform:"none", letterSpacing:0, fontSize:"11px", fontWeight:500 }}>Onchain</span>
+              </div>
+              <div style={{ borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)", padding:"4px 14px" }}>
+                {activities.map(a => (
+                  <a key={a.id} href={`https://sepolia.basescan.org/tx/${a.txHash}`} target="_blank" rel="noopener noreferrer" className="activity-row">
+                    <div className="activity-icon">
+                      {a.type === "deposit" ? Ic.arrowDown : Ic.arrowUp}
+                    </div>
+                    <div style={{ flex:1, minWidth:0 }}>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", gap:"8px" }}>
+                        <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"13px", color:"#eef2ff", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>
+                          Saved to <span style={{ color:"#94a3b8" }}>{a.goalName}</span>
+                        </span>
+                        <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80", fontFeatureSettings:"'tnum'", flexShrink:0 }}>+${a.amount.toFixed(2)}</span>
+                      </div>
+                      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginTop:"3px" }}>
+                        <span style={{ fontSize:"10px", color:"#475569", fontFamily:"var(--FM)" }}>{a.txHash.slice(0,10)}…</span>
+                        <span style={{ fontSize:"10px", color:"#6b7280" }}>{timeAgo(a.timestamp)}</span>
+                      </div>
+                    </div>
+                  </a>
                 ))}
               </div>
             </div>
+          )}
 
-            {/* ─── NETWORK ─── */}
-            <div className="dash-section">
-              <div className="dash-section-label"><span>Network</span></div>
-              <div style={{ padding:"14px", borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)" }}>
-                {[
-                  { l:"Chain", v:"Base Sepolia", c:"#60a5fa", mono:false },
-                  { l:"Vault", v:`${VAULT_ADDRESS.slice(0,8)}…${VAULT_ADDRESS.slice(-4)}`, c:"#cbd5e1", mono:true, link:`https://sepolia.basescan.org/address/${VAULT_ADDRESS}` },
-                  { l:"Wallet", v:`${WALLET_ADDRESS.slice(0,8)}…${WALLET_ADDRESS.slice(-4)}`, c:"#cbd5e1", mono:true, link:`https://sepolia.basescan.org/address/${WALLET_ADDRESS}` },
-                  { l:"Status", v:"Online", c:"#4ade80", mono:false },
-                ].map(row => (
-                  <div key={row.l} style={{ display:"flex", justifyContent:"space-between", fontSize:"12px", marginBottom:"8px", alignItems:"center" }}>
-                    <span style={{ color:"#6b7280" }}>{row.l}</span>
-                    {row.link ? (
-                      <a href={row.link} target="_blank" rel="noopener noreferrer" style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"var(--FM)":"inherit", fontSize:row.mono?"11px":"12px", textDecoration:"none", display:"inline-flex", alignItems:"center", gap:"5px" }}>
-                        {row.v} {Ic.ext}
-                      </a>
-                    ) : (
-                      <span style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"var(--FM)":"inherit", fontSize:row.mono?"11px":"12px" }}>{row.v}</span>
-                    )}
-                  </div>
-                ))}
-              </div>
+          {/* QUICK ACTIONS */}
+          <div className="dash-section">
+            <div className="dash-section-label"><span>Quick actions</span></div>
+            <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
+              {[
+                { label:"Check my balance", icon:Ic.target },
+                { label:"Withdraw savings", icon:Ic.arrowUp },
+                { label:"Save $20 now", icon:Ic.spark },
+              ].map(a => (
+                <button key={a.label} className="qa-btn" onClick={() => { setShowDash(false); setInput(a.label); setTimeout(() => inputRef.current?.focus(), 100); }}>
+                  <span style={{ color:"#818cf8", display:"flex" }}>{a.icon}</span>
+                  <span>{a.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* NETWORK */}
+          <div className="dash-section">
+            <div className="dash-section-label"><span>Network</span></div>
+            <div style={{ padding:"14px", borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)" }}>
+              {[
+                { l:"Chain", v:"Base Sepolia", c:"#60a5fa", mono:false },
+                { l:"Vault", v:`${VAULT_ADDRESS.slice(0,8)}…${VAULT_ADDRESS.slice(-4)}`, c:"#cbd5e1", mono:true, link:`https://sepolia.basescan.org/address/${VAULT_ADDRESS}` },
+                { l:"Wallet", v:`${WALLET_ADDRESS.slice(0,8)}…${WALLET_ADDRESS.slice(-4)}`, c:"#cbd5e1", mono:true, link:`https://sepolia.basescan.org/address/${WALLET_ADDRESS}` },
+                { l:"Status", v:"Online", c:"#4ade80", mono:false },
+              ].map(row => (
+                <div key={row.l} style={{ display:"flex", justifyContent:"space-between", fontSize:"12px", marginBottom:"8px", alignItems:"center" }}>
+                  <span style={{ color:"#6b7280" }}>{row.l}</span>
+                  {row.link ? (
+                    <a href={row.link} target="_blank" rel="noopener noreferrer" style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"var(--FM)":"inherit", fontSize:row.mono?"11px":"12px", textDecoration:"none", display:"inline-flex", alignItems:"center", gap:"5px" }}>
+                      {row.v} {Ic.ext}
+                    </a>
+                  ) : (
+                    <span style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"var(--FM)":"inherit", fontSize:row.mono?"11px":"12px" }}>{row.v}</span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
