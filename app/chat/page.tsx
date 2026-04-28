@@ -32,14 +32,17 @@ const Ic = {
   dash:  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>,
   pact:  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
   vault: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
-  home:  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
   send:  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>,
   close: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
   check: <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
   ext:   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>,
-  trend: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
   copy:  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
   target:<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
+  spark: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l1.9 5.4L19 10l-5.1 1.6L12 17l-1.9-5.4L5 10l5.1-1.6z"/><path d="M19 17l1 2.5L22 20l-2 1-1 2-1-2-2-1 2-.5z"/></svg>,
+  jordan:<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2 18h20l-2-7-3 2-2-4-3 3-2-2-3 4-2-1-3 5z"/></svg>,
+  plane: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
+  laptop:<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>,
+  gift:  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>,
 };
 
 /* ─────────────── TYPES ─────────────── */
@@ -214,34 +217,40 @@ function StreamText({ text }: { text: string }) {
 /* ─────────────── TX RECEIPT ─────────────── */
 function TxCard({ msg }: { msg: Msg }) {
   return (
-    <div style={{ maxWidth:"340px", borderRadius:"18px", overflow:"hidden", border:"1px solid rgba(74,222,128,.25)", background:"linear-gradient(135deg,rgba(34,197,94,.07),rgba(74,222,128,.04))", boxShadow:"0 8px 32px rgba(74,222,128,.08)" }}>
-      <div style={{ padding:"14px 18px", borderBottom:"1px solid rgba(74,222,128,.12)", display:"flex", alignItems:"center", gap:"10px" }}>
-        <div style={{ width:"30px", height:"30px", borderRadius:"50%", background:"rgba(74,222,128,.15)", border:"1px solid rgba(74,222,128,.3)", display:"flex", alignItems:"center", justifyContent:"center", color:"#4ade80", flexShrink:0 }}>
+    <div style={{ maxWidth:"360px", borderRadius:"18px", overflow:"hidden", border:"1px solid rgba(74,222,128,.28)", background:"linear-gradient(135deg,rgba(34,197,94,.08),rgba(74,222,128,.04))", boxShadow:"0 12px 36px rgba(74,222,128,.10), 0 0 0 1px rgba(74,222,128,.05)" }}>
+      <div style={{ padding:"14px 18px", borderBottom:"1px solid rgba(74,222,128,.14)", display:"flex", alignItems:"center", gap:"10px", background:"rgba(74,222,128,.04)" }}>
+        <div style={{ width:"30px", height:"30px", borderRadius:"50%", background:"rgba(74,222,128,.18)", border:"1px solid rgba(74,222,128,.35)", display:"flex", alignItems:"center", justifyContent:"center", color:"#4ade80", flexShrink:0 }}>
           {Ic.check}
         </div>
-        <div>
-          <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"14px", color:"#4ade80" }}>Transaction confirmed</div>
+        <div style={{ flex:1 }}>
+          <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"14px", color:"#4ade80", letterSpacing:"-.01em" }}>Transaction confirmed</div>
           <div style={{ fontSize:"11px", color:"#6b7280", marginTop:"1px" }}>Base Sepolia · Instant</div>
         </div>
       </div>
-      <div style={{ padding:"14px 18px" }}>
+      <div style={{ padding:"16px 18px" }}>
         {msg.goalName && (
-          <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"8px" }}>
-            <span style={{ fontSize:"12px", color:"#6b7280" }}>Goal</span>
-            <span style={{ fontSize:"12px", fontWeight:600, color:"#eef2ff" }}>{msg.goalName}</span>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"10px" }}>
+            <span style={{ fontSize:"11px", color:"#6b7280", textTransform:"uppercase", letterSpacing:".08em", fontWeight:600 }}>Goal</span>
+            <span style={{ fontFamily:"var(--FD)", fontSize:"13px", fontWeight:700, color:"#eef2ff" }}>{msg.goalName}</span>
           </div>
         )}
         {msg.amount && (
-          <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"8px" }}>
-            <span style={{ fontSize:"12px", color:"#6b7280" }}>Amount saved</span>
-            <span style={{ fontFamily:"var(--FD)", fontSize:"17px", fontWeight:900, color:"#4ade80" }}>${msg.amount} USDC</span>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:"12px" }}>
+            <span style={{ fontSize:"11px", color:"#6b7280", textTransform:"uppercase", letterSpacing:".08em", fontWeight:600 }}>Saved</span>
+            <span style={{ fontFamily:"var(--FD)", fontSize:"22px", fontWeight:900, color:"#4ade80", letterSpacing:"-.02em", fontFeatureSettings:"'tnum'" }}>${msg.amount}<span style={{ fontSize:"12px", marginLeft:"4px", opacity:.6 }}>USDC</span></span>
           </div>
         )}
         {msg.txHash && (
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", paddingTop:"8px", borderTop:"1px solid rgba(255,255,255,.06)" }}>
-            <span style={{ fontSize:"11px", color:"#4b5563", fontFamily:"monospace" }}>{msg.txHash}</span>
-            <span style={{ color:"#6366f1" }}>{Ic.ext}</span>
-          </div>
+          <a
+            href={`https://sepolia.basescan.org/tx/${msg.txHash}`}
+            target="_blank" rel="noopener noreferrer"
+            style={{ display:"flex", justifyContent:"space-between", alignItems:"center", paddingTop:"10px", borderTop:"1px solid rgba(255,255,255,.06)", textDecoration:"none", transition:"color 0.2s" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color="#4ade80"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color=""; }}
+          >
+            <span style={{ fontSize:"11px", color:"#4b5563", fontFamily:"var(--FM)" }}>{msg.txHash}</span>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:"4px", fontSize:"10px", fontWeight:600, color:"#6366f1" }}>BaseScan {Ic.ext}</span>
+          </a>
         )}
       </div>
     </div>
@@ -266,11 +275,9 @@ function MsgBubble({ msg, isLatest }: { msg: Msg; isLatest: boolean }) {
       <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end" }}
         onMouseEnter={() => setShowMeta(true)} onMouseLeave={() => setShowMeta(false)}>
         <div style={{ display:"flex", alignItems:"flex-end", gap:"8px" }}>
-          {showMeta && (
-            <span style={{ fontSize:"10px", color:"#4b5563", whiteSpace:"nowrap", paddingBottom:"2px", transition:"opacity 0.2s" }}>
-              {timeAgo(msg.timestamp)}
-            </span>
-          )}
+          <span style={{ fontSize:"10px", color:"#4b5563", whiteSpace:"nowrap", paddingBottom:"2px", opacity: showMeta ? 1 : 0, transition:"opacity 0.2s" }}>
+            {timeAgo(msg.timestamp)}
+          </span>
           <div className="bubble-user">{msg.content}</div>
         </div>
       </div>
@@ -290,8 +297,7 @@ function MsgBubble({ msg, isLatest }: { msg: Msg; isLatest: boolean }) {
               {isLatest ? <StreamText text={msg.content} /> : content}
             </div>
           )}
-          {/* Hover actions */}
-          <div style={{ display:"flex", gap:"6px", opacity: showMeta ? 1 : 0, transition:"opacity 0.2s", paddingLeft:"2px" }}>
+          <div style={{ display:"flex", gap:"6px", opacity: showMeta ? 1 : 0, transition:"opacity 0.2s", paddingLeft:"2px", alignItems:"center" }}>
             <button onClick={copyText} style={{ display:"inline-flex", alignItems:"center", gap:"4px", fontSize:"10px", color: copied ? "#4ade80" : "#4b5563", background:"none", border:"none", cursor:"pointer", fontFamily:"var(--FB)", padding:"2px 6px", borderRadius:"6px", transition:"color 0.2s" }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.color="#94a3b8"}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.color= copied ? "#4ade80" : "#4b5563"}>
@@ -341,14 +347,12 @@ function SessionSummary({ msgs }: { msgs: Msg[] }) {
   );
 }
 
-/* ─────────────── GOAL PROGRESS CHIP ─────────────── */
+/* ─────────────── GOAL PROGRESS CHIP (top bar) ─────────────── */
 function GoalChip({ goals, totalSaved, onClick }: { goals: Goal[]; totalSaved: number; onClick: () => void }) {
   const topGoal = goals[0];
   const pct = topGoal ? Math.min((topGoal.saved / topGoal.target) * 100, 100) : 0;
   return (
-    <div onClick={onClick} style={{ display:"flex", alignItems:"center", gap:"8px", padding:"6px 14px", borderRadius:"100px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.2)", cursor:"pointer", transition:"all 0.2s" }}
-      onMouseEnter={e => (e.currentTarget as HTMLElement).style.background="rgba(99,102,241,.18)"}
-      onMouseLeave={e => (e.currentTarget as HTMLElement).style.background="rgba(99,102,241,.1)"}>
+    <div onClick={onClick} className="goal-chip">
       {topGoal ? (
         <>
           <div style={{ position:"relative", width:"22px", height:"22px", flexShrink:0 }}>
@@ -360,26 +364,82 @@ function GoalChip({ goals, totalSaved, onClick }: { goals: Goal[]; totalSaved: n
             </svg>
           </div>
           <span style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"12px", color:"#eef2ff", maxWidth:"90px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{topGoal.name}</span>
-          <span style={{ fontSize:"11px", color:"#818cf8", fontWeight:600 }}>{Math.round(pct)}%</span>
+          <span style={{ fontSize:"11px", color:"#818cf8", fontWeight:600, fontFeatureSettings:"'tnum'" }}>{Math.round(pct)}%</span>
           <div style={{ width:"1px", height:"12px", background:"rgba(255,255,255,.1)" }} />
-          <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80" }}>${totalSaved.toFixed(0)} saved</span>
+          <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"13px", color:"#4ade80", fontFeatureSettings:"'tnum'" }}>${totalSaved.toFixed(0)}</span>
         </>
       ) : (
         <>
           <span style={{ width:"7px", height:"7px", borderRadius:"50%", background:"#6366f1", display:"inline-block", opacity:0.7 }} />
-          <span style={{ fontFamily:"var(--FD)", fontWeight:600, fontSize:"12px", color:"#818cf8" }}>Start saving</span>
+          <span style={{ fontFamily:"var(--FD)", fontWeight:600, fontSize:"12px", color:"#818cf8" }}>Open dashboard</span>
         </>
       )}
     </div>
   );
 }
 
-/* ─────────────── ONBOARDING SEQUENCE ─────────────── */
-const ONBOARDING: Msg[] = [
-  { id:"o1", role:"assistant", type:"normal", content:"Good to meet you. I'm Stashify.", timestamp: Date.now() - 4000 },
-  { id:"o2", role:"assistant", type:"normal", content:"I move real USDC onchain the moment you tell me to save. No banks. No forms. Just you and Base.", timestamp: Date.now() - 2000 },
-  { id:"o3", role:"assistant", type:"normal", content:`${getGreeting()}. What's the first thing you want to save for?`, timestamp: Date.now() },
-];
+/* ─────────────── WALLET CHIP (top bar) ─────────────── */
+function WalletChip({ address }: { address: string }) {
+  const [copied, setCopied] = useState(false);
+  const copyAddr = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(address).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1400);
+    });
+  };
+  return (
+    <div className="wallet-chip">
+      <span style={{ width:"7px", height:"7px", borderRadius:"50%", background:"#4ade80", display:"inline-block", boxShadow:"0 0 8px rgba(74,222,128,.6)" }} />
+      <span style={{ fontFamily:"var(--FM)", fontSize:"11px", color:"#cbd5e1", fontWeight:500 }}>
+        {address.slice(0,6)}…{address.slice(-4)}
+      </span>
+      <button onClick={copyAddr} className="wallet-action" title="Copy address">
+        {copied ? <span style={{ color:"#4ade80" }}>{Ic.check}</span> : Ic.copy}
+      </button>
+      <a href={`https://sepolia.basescan.org/address/${address}`} target="_blank" rel="noopener noreferrer" className="wallet-action" onClick={e => e.stopPropagation()} title="View on BaseScan">
+        {Ic.ext}
+      </a>
+    </div>
+  );
+}
+
+/* ─────────────── EMPTY STATE HERO ─────────────── */
+function EmptyHero({ onPick }: { onPick: (text: string) => void }) {
+  const greet = getGreeting();
+  const prompts = [
+    { icon:Ic.jordan, text:"Save $50 for new Jordans" },
+    { icon:Ic.plane,  text:"Save $300 for a trip to Bali" },
+    { icon:Ic.laptop, text:"Save $800 for a new laptop" },
+    { icon:Ic.gift,   text:"Save $40 for a friend's gift" },
+  ];
+  return (
+    <div className="empty-hero">
+      <div className="empty-logo">
+        <Logo size={56} />
+      </div>
+      <h1 className="empty-title">
+        <span style={{ color:"var(--t1)" }}>{greet}.</span><br/>
+        <span className="gt">What are we saving for?</span>
+      </h1>
+      <p className="empty-sub">
+        Type a goal in plain English. Stashify executes real USDC transactions on Base — no forms, no setup.
+      </p>
+      <div className="empty-prompts">
+        {prompts.map(p => (
+          <button key={p.text} className="empty-chip" onClick={() => onPick(p.text)}>
+            <span style={{ color:"#818cf8", display:"flex" }}>{p.icon}</span>
+            <span>{p.text}</span>
+          </button>
+        ))}
+      </div>
+      <div className="empty-foot">
+        <span className="empty-pill"><span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#4ade80", display:"inline-block" }} /> Live on Base Sepolia</span>
+        <span className="empty-pill">{Ic.spark} Powered by AgentKit</span>
+      </div>
+    </div>
+  );
+}
 
 /* ─────────────── AMBIENT CANVAS ─────────────── */
 function AmbientCanvas({ state }: { state: "idle"|"thinking"|"success" }) {
@@ -431,7 +491,6 @@ function AmbientCanvas({ state }: { state: "idle"|"thinking"|"success" }) {
 export default function ChatPage() {
   const router = useRouter();
 
-  // Determine if returning user (has goals onchain)
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -440,7 +499,6 @@ export default function ChatPage() {
   const [latestMsgId, setLatestMsgId] = useState<string|null>(null);
   const [ambientState, setAmbientState] = useState<"idle"|"thinking"|"success">("idle");
   const [confettiActive, setConfettiActive] = useState(false);
-  const [sessionSaved, setSessionSaved] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const initialized = useRef(false);
@@ -450,7 +508,7 @@ export default function ChatPage() {
   const overallPct = totalTarget > 0 ? totalSaved / totalTarget : 0;
   const goalColors = ["#6366f1","#3b82f6","#8b5cf6","#4ade80","#f59e0b"];
 
-  // Initialize: fetch goals first, then show appropriate greeting
+  // Initialize: fetch goals first, then show appropriate state
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
@@ -458,7 +516,6 @@ export default function ChatPage() {
       const onchainGoals = await fetchOnchainGoals();
       setGoals(onchainGoals);
       if (onchainGoals.length > 0) {
-        // Returning user
         setMsgs([{
           id: "welcome-back",
           role: "assistant",
@@ -466,19 +523,13 @@ export default function ChatPage() {
           content: `${getGreeting()}! You have $${onchainGoals.reduce((s,g)=>s+g.saved,0).toFixed(2)} saved across ${onchainGoals.length} goal${onchainGoals.length>1?"s":""}. What would you like to do today?`,
           timestamp: Date.now(),
         }]);
-      } else {
-        // New user — staggered onboarding sequence
-        setTimeout(() => setMsgs([ONBOARDING[0]]), 300);
-        setTimeout(() => setMsgs(p => [...p, ONBOARDING[1]]), 1800);
-        setTimeout(() => setMsgs(p => [...p, ONBOARDING[2]]), 3400);
       }
+      // No goals yet → empty hero handles the moment
     })();
   }, []);
 
-  // Scroll to bottom
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior:"smooth" }); }, [msgs, loading]);
 
-  // Auto-resize textarea
   useEffect(() => {
     const ta = inputRef.current; if (!ta) return;
     ta.style.height = "auto";
@@ -517,10 +568,8 @@ export default function ChatPage() {
       if (isTx) {
         setAmbientState("success");
         setConfettiActive(true);
-        setSessionSaved(s => s + (data.goalUpdate?.amount || 0));
         setTimeout(() => { setConfettiActive(false); setAmbientState("idle"); }, 3000);
 
-        // Optimistic update
         setGoals(p => {
           const ex = p.find(g => g.name.toLowerCase() === data.goalUpdate.name.toLowerCase());
           if (ex) return p.map(g => g.name.toLowerCase() === data.goalUpdate.name.toLowerCase()
@@ -528,7 +577,6 @@ export default function ChatPage() {
           return [...p, { name: data.goalUpdate.name, saved: data.goalUpdate.amount, target: data.goalUpdate.target || data.goalUpdate.amount * 3 }];
         });
 
-        // Re-sync with chain after 4s
         setTimeout(async () => {
           const fresh = await fetchOnchainGoals();
           if (fresh.length > 0) setGoals(fresh);
@@ -546,50 +594,71 @@ export default function ChatPage() {
   const userHasSentMessage = msgs.some(m => m.role === "user");
   const showQuickReplies = !loading && lastAiMsg && userHasSentMessage;
   const showSessionSummary = msgs.filter(m => m.type === "tx").length >= 2;
+  const isEmptyState = msgs.length === 0 && !loading;
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
         *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
         :root {
           --bg:#060912; --sur:rgba(255,255,255,.035); --bor:rgba(255,255,255,.07);
           --t1:#eef2ff; --t2:#6b7280; --t3:#1f2937;
           --grad:linear-gradient(135deg,#3b82f6,#8b5cf6);
-          --FD:'Cabinet Grotesk',sans-serif; --FB:'Instrument Sans',sans-serif;
+          --FD:'Cabinet Grotesk',sans-serif;
+          --FB:'Instrument Sans',sans-serif;
+          --FM:'JetBrains Mono', ui-monospace, monospace;
         }
         body { background:var(--bg); color:var(--t1); font-family:var(--FB); overflow:hidden; height:100vh; }
         ::-webkit-scrollbar { width:3px; }
         ::-webkit-scrollbar-thumb { background:rgba(99,102,241,.2); border-radius:3px; }
 
+        .gt { background: linear-gradient(110deg, #60a5fa 0%, #818cf8 42%, #c084fc 85%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
         .app-shell { display:flex; height:100vh; overflow:hidden; position:relative; z-index:1; }
 
         /* ── SIDEBAR ── */
         .sidebar {
-          width:68px; flex-shrink:0; display:flex; flex-direction:column;
-          align-items:center; padding:16px 0; gap:6px;
+          width:72px; flex-shrink:0; display:flex; flex-direction:column;
+          align-items:center; padding:18px 0 14px; gap:4px;
           background:rgba(3,5,12,.99);
-          border-right:1px solid rgba(255,255,255,.09);
+          border-right:1px solid rgba(255,255,255,.07);
           backdrop-filter:blur(24px); z-index:20;
         }
-        .sb-logo { margin-bottom:14px; padding:8px; cursor:pointer; transition:transform .2s; }
-        .sb-logo:hover { transform:scale(1.08); }
+        .sb-logo {
+          margin-bottom:18px; padding:6px; cursor:pointer;
+          transition:transform .25s cubic-bezier(.23,1,.32,1);
+          border-radius:14px; position:relative;
+        }
+        .sb-logo::after {
+          content:''; position:absolute; inset:-2px; border-radius:16px;
+          background: linear-gradient(135deg, rgba(59,130,246,.4), rgba(139,92,246,.3));
+          opacity:0; filter:blur(8px); transition:opacity .3s; z-index:-1;
+        }
+        .sb-logo:hover { transform:scale(1.06); }
+        .sb-logo:hover::after { opacity:.7; }
+
+        .sb-section-label {
+          font-family:var(--FB); font-size:9px; font-weight:700;
+          letter-spacing:.14em; text-transform:uppercase;
+          color:#374151; margin:8px 0 4px;
+        }
         .sb-btn {
-          width:46px; height:46px; border-radius:14px;
+          width:48px; height:48px; border-radius:14px;
           display:flex; align-items:center; justify-content:center;
-          color:rgba(255,255,255,.35); cursor:pointer; border:1px solid transparent; background:transparent;
+          color:rgba(255,255,255,.4); cursor:pointer; border:1px solid transparent; background:transparent;
           transition:color .2s, background .2s, transform .18s, border-color .2s; position:relative;
         }
-        .sb-btn:hover { color:rgba(255,255,255,.95); background:rgba(255,255,255,.08); transform:scale(1.1); border-color:rgba(255,255,255,.08); }
-        .sb-btn:active { transform:scale(0.92); }
-        .sb-btn.active { color:white; background:rgba(99,102,241,.25); border-color:rgba(99,102,241,.35); }
+        .sb-btn:hover { color:rgba(255,255,255,.95); background:rgba(255,255,255,.05); transform:scale(1.06); border-color:rgba(255,255,255,.06); }
+        .sb-btn:active { transform:scale(0.94); }
+        .sb-btn.active { color:white; background:rgba(99,102,241,.18); border-color:rgba(99,102,241,.32); box-shadow: 0 0 0 1px rgba(99,102,241,.1) inset, 0 4px 16px rgba(99,102,241,.18); }
         .sb-btn.active::before {
-          content:''; position:absolute; left:-1px; top:50%; transform:translateY(-50%);
+          content:''; position:absolute; left:-9px; top:50%; transform:translateY(-50%);
           width:3px; height:24px; background:linear-gradient(180deg,#3b82f6,#8b5cf6);
-          border-radius:0 3px 3px 0;
+          border-radius:0 3px 3px 0; box-shadow:0 0 8px rgba(99,102,241,.6);
         }
         .sb-tooltip {
-          position:absolute; left:60px; top:50%;
+          position:absolute; left:62px; top:50%;
           transform:translateY(-50%) translateX(-6px);
           background:rgba(4,6,14,.99); border:1px solid rgba(255,255,255,.12);
           color:#eef2ff; font-size:12px; font-weight:600; padding:6px 12px; border-radius:10px;
@@ -599,8 +668,21 @@ export default function ChatPage() {
           box-shadow:0 8px 24px rgba(0,0,0,.5);
         }
         .sb-btn:hover .sb-tooltip { opacity:1; transform:translateY(-50%) translateX(0); }
-        .sb-divider { width:36px; height:1px; background:rgba(255,255,255,.08); margin:8px 0; }
-        .sb-bottom { margin-top:auto; display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 0 8px; }
+        .sb-divider { width:32px; height:1px; background:rgba(255,255,255,.06); margin:10px 0; }
+        .sb-bottom { margin-top:auto; display:flex; flex-direction:column; align-items:center; gap:8px; }
+        .sb-status {
+          display:flex; flex-direction:column; align-items:center; gap:5px;
+          padding:8px 0;
+        }
+        .sb-status-dot {
+          width:6px; height:6px; border-radius:50%; background:#4ade80;
+          box-shadow:0 0 8px rgba(74,222,128,.6); animation: pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+        .sb-status-label {
+          font-family:var(--FB); font-size:8px; font-weight:700;
+          letter-spacing:.18em; color:#4ade80;
+        }
 
         /* ── MAIN ── */
         .main-area { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; }
@@ -608,9 +690,94 @@ export default function ChatPage() {
         /* ── TOP BAR ── */
         .top-bar {
           display:flex; align-items:center; justify-content:space-between;
-          padding:0 24px; height:56px; flex-shrink:0;
+          padding:0 24px; height:60px; flex-shrink:0;
           border-bottom:1px solid rgba(255,255,255,.05);
-          background:rgba(4,8,15,.88); backdrop-filter:blur(24px);
+          background:rgba(4,8,15,.78); backdrop-filter:blur(24px);
+          z-index:5;
+        }
+        .top-title {
+          fontFamily:var(--FD); font-weight:800; font-size:15px; letter-spacing:-.01em;
+        }
+
+        .goal-chip {
+          display:flex; align-items:center; gap:8px;
+          padding:6px 14px; border-radius:100px;
+          background:rgba(99,102,241,.08);
+          border:1px solid rgba(99,102,241,.18);
+          cursor:pointer;
+          transition:background .2s, border-color .2s, transform .15s;
+        }
+        .goal-chip:hover { background:rgba(99,102,241,.16); border-color:rgba(99,102,241,.32); transform:translateY(-1px); }
+        .goal-chip:active { transform:translateY(0); }
+
+        .wallet-chip {
+          display:flex; align-items:center; gap:8px;
+          padding:6px 10px 6px 12px; border-radius:100px;
+          background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.07);
+          transition:border-color .2s, background .2s;
+        }
+        .wallet-chip:hover { border-color:rgba(255,255,255,.14); background:rgba(255,255,255,.04); }
+        .wallet-action {
+          display:flex; align-items:center; justify-content:center;
+          width:22px; height:22px; border-radius:6px;
+          background:transparent; border:none; cursor:pointer;
+          color:#6b7280; transition:color .15s, background .15s;
+        }
+        .wallet-action:hover { color:#eef2ff; background:rgba(255,255,255,.06); }
+
+        /* ── EMPTY HERO ── */
+        .empty-hero {
+          flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+          padding: 24px 24px 40px; text-align:center; max-width:680px; margin:0 auto;
+          animation: emptyIn .7s cubic-bezier(.23,1,.32,1);
+        }
+        @keyframes emptyIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+        .empty-logo {
+          margin-bottom:28px; position:relative;
+          animation: float 4s ease-in-out infinite;
+        }
+        .empty-logo::after {
+          content:''; position:absolute; inset:-12px; border-radius:24px;
+          background:radial-gradient(circle at center, rgba(99,102,241,.25), transparent 60%);
+          filter:blur(20px); z-index:-1;
+        }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        .empty-title {
+          font-family:var(--FD); font-weight:900;
+          font-size:clamp(34px, 5vw, 52px); letter-spacing:-.04em; line-height:1.04;
+          margin-bottom:18px;
+        }
+        .empty-sub {
+          color:var(--t2); font-size:clamp(14px, 1.6vw, 16px);
+          line-height:1.7; max-width:440px; margin:0 auto 36px;
+        }
+        .empty-prompts {
+          display:grid; grid-template-columns: 1fr 1fr;
+          gap:10px; width:100%; max-width:540px; margin-bottom:28px;
+        }
+        .empty-chip {
+          display:flex; align-items:center; gap:10px;
+          padding:14px 18px; border-radius:14px;
+          background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.07);
+          color:#cbd5e1; font-family:var(--FB); font-size:13px; font-weight:500;
+          cursor:pointer; text-align:left;
+          transition:all .25s ease;
+        }
+        .empty-chip:hover {
+          color:#eef2ff;
+          background:rgba(99,102,241,.08);
+          border-color:rgba(99,102,241,.3);
+          transform:translateY(-2px);
+          box-shadow:0 8px 24px rgba(99,102,241,.12);
+        }
+        .empty-foot {
+          display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+        }
+        .empty-pill {
+          display:inline-flex; align-items:center; gap:6px;
+          font-size:11px; color:#6b7280; padding:5px 12px;
+          border-radius:100px; border:1px solid rgba(255,255,255,.06);
+          background:rgba(255,255,255,.02);
         }
 
         /* ── MESSAGES ── */
@@ -620,7 +787,6 @@ export default function ChatPage() {
           display:flex; flex-direction:column; gap:18px;
         }
 
-        /* ── BUBBLES ── */
         .bubble-user {
           background:linear-gradient(135deg,#2563eb,#6366f1); color:white;
           border-radius:18px 18px 4px 18px; padding:12px 18px;
@@ -637,13 +803,11 @@ export default function ChatPage() {
         }
         .bubble-ai:hover { border-color:rgba(255,255,255,.12); }
 
-        /* ── THINKING ── */
         .thinking {
           background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07);
           border-radius:18px 18px 18px 4px; overflow:hidden;
         }
 
-        /* ── QUICK REPLY BUTTONS ── */
         .qr-btn {
           font-size:12px; font-weight:500; padding:7px 14px;
           border-radius:100px; border:1px solid rgba(99,102,241,.3);
@@ -653,40 +817,42 @@ export default function ChatPage() {
         }
         .qr-btn:hover { color:white; border-color:rgba(99,102,241,.55); background:rgba(99,102,241,.16); transform:translateY(-1px); }
 
-        /* ── SUGGESTED PROMPTS ── */
-        .prompt-btn {
-          font-size:12px; font-weight:500; padding:8px 16px;
-          border-radius:100px; border:1px solid rgba(255,255,255,.09);
-          background:rgba(255,255,255,.03); color:var(--t2);
-          cursor:pointer; white-space:nowrap; transition:all .2s; font-family:var(--FB);
-        }
-        .prompt-btn:hover { color:var(--t1); border-color:rgba(99,102,241,.35); background:rgba(99,102,241,.07); transform:translateY(-1px); }
-
         /* ── INPUT AREA ── */
         .input-area {
-          flex-shrink:0; padding:14px 24px 18px;
-          background:rgba(4,8,15,.9); backdrop-filter:blur(24px);
+          flex-shrink:0; padding:16px 24px 20px;
+          background:rgba(4,8,15,.85); backdrop-filter:blur(24px);
           border-top:1px solid rgba(255,255,255,.05);
+          position:relative;
         }
+        .input-area::before {
+          content:''; position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+          width:40%; height:1px;
+          background:linear-gradient(90deg, transparent, rgba(99,102,241,.4), transparent);
+          opacity:0; transition:opacity .3s;
+        }
+        .input-area.focused::before { opacity:1; }
+
         .input-wrap {
           max-width:720px; margin:0 auto;
-          display:flex; align-items:center; gap:12px;
-          padding:12px 16px; border-radius:20px;
+          display:flex; align-items:flex-end; gap:12px;
+          padding:10px 10px 10px 18px; border-radius:20px;
           border:1px solid rgba(255,255,255,.09);
           background:rgba(255,255,255,.04);
-          transition:border-color .3s, box-shadow .3s;
+          transition:border-color .3s, box-shadow .3s, background .3s;
           position:relative;
         }
         .input-wrap:focus-within {
           border-color:rgba(99,102,241,.5);
-          box-shadow:0 0 0 3px rgba(99,102,241,.09), 0 8px 32px rgba(0,0,0,.3);
+          background:rgba(255,255,255,.05);
+          box-shadow:0 0 0 4px rgba(99,102,241,.08), 0 12px 36px rgba(0,0,0,.35);
         }
         .input-ta {
           flex:1; background:transparent; border:none; outline:none;
           color:var(--t1); font-family:var(--FB); font-size:14px; line-height:1.6;
-          resize:none; min-height:22px; max-height:120px; scrollbar-width:none;
+          resize:none; min-height:24px; max-height:120px; scrollbar-width:none;
+          padding-top:6px; padding-bottom:6px;
         }
-        .input-ta::placeholder { color:#2d3748; }
+        .input-ta::placeholder { color:#374151; }
         .input-ta::-webkit-scrollbar { display:none; }
 
         .send-btn {
@@ -698,11 +864,29 @@ export default function ChatPage() {
         }
         .send-btn:hover:not(:disabled) { transform:scale(1.08); box-shadow:0 6px 24px rgba(99,102,241,.6); }
         .send-btn:active:not(:disabled) { transform:scale(0.95); }
-        .send-btn:disabled { opacity:.3; cursor:default; }
+        .send-btn:disabled { opacity:.3; cursor:default; box-shadow:none; }
+
+        .input-foot {
+          display:flex; justify-content:space-between; align-items:center;
+          max-width:720px; margin:8px auto 0; padding: 0 4px;
+          font-size:11px; color:#374151;
+        }
+        .input-foot kbd {
+          font-family:var(--FM); font-size:10px;
+          padding:1px 6px; border-radius:4px;
+          border:1px solid rgba(255,255,255,.08);
+          background:rgba(255,255,255,.025); color:#6b7280;
+        }
 
         /* ── DASHBOARD PANEL ── */
+        .dash-backdrop {
+          position:absolute; inset:0; background:rgba(0,0,0,.4);
+          opacity:0; pointer-events:none; transition:opacity .35s; z-index:25;
+        }
+        .dash-backdrop.open { opacity:1; pointer-events:auto; }
+
         .dash-panel {
-          position:absolute; top:0; right:0; bottom:0; width:340px;
+          position:absolute; top:0; right:0; bottom:0; width:380px;
           background:rgba(6,10,20,.97); backdrop-filter:blur(36px);
           border-left:1px solid rgba(255,255,255,.07);
           z-index:30; display:flex; flex-direction:column;
@@ -720,8 +904,15 @@ export default function ChatPage() {
           background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07);
           color:#94a3b8; font-size:13px; font-family:var(--FB);
           cursor:pointer; text-align:left; transition:all .2s;
+          display:flex; align-items:center; gap:10px;
         }
         .qa-btn:hover { border-color:rgba(99,102,241,.3); color:#eef2ff; background:rgba(99,102,241,.06); }
+
+        .dash-section-label {
+          font-family:var(--FB); font-weight:700; font-size:10px;
+          color:#374151; letter-spacing:.14em; text-transform:uppercase;
+          margin-bottom:12px;
+        }
 
         /* ── ANIMATIONS ── */
         @keyframes wave   { 0%,100%{height:6px} 50%{height:22px} }
@@ -732,30 +923,70 @@ export default function ChatPage() {
         .msg-enter { animation:msgIn .38s cubic-bezier(.23,1,.32,1) forwards; }
         .fade-in   { animation:fadeIn .4s ease forwards; }
 
-        /* ── NOISE ── */
         .noise { position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.016;
           background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size:256px; }
 
         /* ── MOBILE BOTTOM NAV ── */
-        @media (max-width:640px) {
-          .sidebar { display:none; }
-          .mobile-nav { display:flex !important; }
-          body { overflow:auto; }
-        }
         .mobile-nav {
           display:none; position:fixed; bottom:0; left:0; right:0; z-index:50;
           background:rgba(4,8,15,.96); border-top:1px solid rgba(255,255,255,.07);
-          backdrop-filter:blur(20px); padding:8px 0 env(safe-area-inset-bottom,8px);
+          backdrop-filter:blur(20px); padding:10px 0 calc(env(safe-area-inset-bottom, 0px) + 10px);
         }
         .mobile-nav-btn {
-          flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+          flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;
           background:none; border:none; cursor:pointer; color:var(--t2);
-          font-size:9px; font-family:var(--FB); font-weight:600;
-          letter-spacing:.06em; text-transform:uppercase; padding:6px 0;
+          font-size:10px; font-family:var(--FB); font-weight:600;
+          letter-spacing:.04em; padding:4px 0;
           transition:color .2s;
         }
         .mobile-nav-btn.active { color:#818cf8; }
+
+        /* ── MOBILE BREAKPOINTS ── */
+        @media (max-width: 768px) {
+          .sidebar { display:none !important; }
+          .mobile-nav { display:flex !important; }
+          body { overflow:hidden; }
+
+          .top-bar { padding: 0 16px; height:56px; }
+          .top-title-block .top-title { font-size:14px !important; }
+          .top-title-block .top-sub { font-size:10px !important; }
+
+          /* Hide wallet chip text on mobile, keep dot only */
+          .wallet-chip span:nth-of-type(2) { display:none; }
+
+          .msgs { padding:20px 0 12px; }
+          .msgs-inner { padding: 0 16px; gap:14px; }
+
+          .bubble-user, .bubble-ai { max-width:88%; font-size:14px; }
+
+          .input-area { padding: 12px 16px calc(env(safe-area-inset-bottom, 0px) + 70px); }
+          .input-wrap { padding: 8px 8px 8px 16px; }
+
+          /* Mobile: dashboard becomes full-width drawer from bottom */
+          .dash-panel {
+            width:100% !important; height:88vh; top:auto; bottom:0;
+            border-left:none; border-top:1px solid rgba(255,255,255,.1);
+            border-radius:24px 24px 0 0;
+            transform:translateY(100%);
+          }
+          .dash-panel.open { transform:translateY(0); }
+          .dash-panel::before {
+            content:''; position:absolute; top:8px; left:50%; transform:translateX(-50%);
+            width:36px; height:4px; border-radius:2px; background:rgba(255,255,255,.15);
+          }
+          .dash-header { padding-top:24px; }
+
+          .empty-hero { padding: 16px 20px 40px; }
+          .empty-prompts { grid-template-columns: 1fr; }
+          .empty-title { font-size:32px !important; }
+        }
+
+        @media (max-width: 480px) {
+          .top-bar { padding: 0 12px; }
+          .goal-chip { padding:5px 10px; }
+          .goal-chip span:nth-of-type(2) { max-width:60px; }
+        }
       `}</style>
 
       <AmbientCanvas state={ambientState} />
@@ -766,20 +997,20 @@ export default function ChatPage() {
 
         {/* ════ SIDEBAR ════ */}
         <aside className="sidebar">
-          <div className="sb-logo" onClick={() => router.push("/")}><Logo size={32} /></div>
+          <div className="sb-logo" onClick={() => router.push("/")} title="Stashify"><Logo size={32} /></div>
 
-          {[
-            { icon:Ic.home,  label:"Home",        path:"/",       active:false },
-            { icon:Ic.chat,  label:"Chat",         path:"/chat",   active:true },
-            { icon:Ic.pact,  label:"Pacts",        path:"/pact",   active:false },
-            { icon:Ic.vault, label:"Yield Vaults", path:"/vaults", active:false },
-          ].map(item => (
-            <button key={item.path} className={`sb-btn ${item.active?"active":""}`}
-              onClick={() => !item.active && router.push(item.path)}>
-              {item.icon}
-              <span className="sb-tooltip">{item.label}</span>
-            </button>
-          ))}
+          <button className="sb-btn active">
+            {Ic.chat}
+            <span className="sb-tooltip">Chat</span>
+          </button>
+          <button className="sb-btn" onClick={() => router.push("/pact")}>
+            {Ic.pact}
+            <span className="sb-tooltip">Stash Pact</span>
+          </button>
+          <button className="sb-btn" onClick={() => router.push("/vaults")}>
+            {Ic.vault}
+            <span className="sb-tooltip">Yield Vaults</span>
+          </button>
 
           <div className="sb-divider" />
 
@@ -789,9 +1020,9 @@ export default function ChatPage() {
           </button>
 
           <div className="sb-bottom">
-            <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"3px" }}>
-              <div style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#4ade80" }} />
-              <div style={{ fontSize:"9px", color:"#4ade80", fontWeight:600, letterSpacing:".04em", writingMode:"vertical-lr", transform:"rotate(180deg)" }}>BASE</div>
+            <div className="sb-status">
+              <div className="sb-status-dot" />
+              <div className="sb-status-label">BASE</div>
             </div>
           </div>
         </aside>
@@ -801,56 +1032,50 @@ export default function ChatPage() {
 
           {/* Top bar */}
           <div className="top-bar">
-            <div style={{ display:"flex", alignItems:"center", gap:"12px" }}>
+            <div className="top-title-block" style={{ display:"flex", alignItems:"center", gap:"12px" }}>
               <div>
-                <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"15px", letterSpacing:"-.01em" }}>Stashify Chat</div>
-                <div style={{ fontSize:"11px", color:"#4ade80", marginTop:"1px" }}>● Connected · Base Sepolia</div>
+                <div className="top-title" style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"15px", letterSpacing:"-.01em" }}>Stashify</div>
+                <div className="top-sub" style={{ fontSize:"11px", color:"#4ade80", marginTop:"1px" }}>● Online · Base Sepolia</div>
               </div>
             </div>
             <div style={{ display:"flex", alignItems:"center", gap:"10px" }}>
-              {/* Goal progress chip */}
               <GoalChip goals={goals} totalSaved={totalSaved} onClick={() => setShowDash(p => !p)} />
+              <WalletChip address={WALLET_ADDRESS} />
+            </div>
+          </div>
 
-              <div style={{ fontFamily:"monospace", fontSize:"10px", color:"#374151", padding:"5px 10px", borderRadius:"8px", border:"1px solid rgba(255,255,255,.05)", background:"rgba(255,255,255,.02)" }}>
-                {WALLET_ADDRESS.slice(0,6)}...{WALLET_ADDRESS.slice(-4)}
+          {/* Body — empty hero or messages */}
+          {isEmptyState ? (
+            <EmptyHero onPick={(t) => send(t)} />
+          ) : (
+            <div className="msgs">
+              <div className="msgs-inner">
+                {msgs.map((msg) => (
+                  <div key={msg.id} className="msg-enter">
+                    <MsgBubble msg={msg} isLatest={msg.id === latestMsgId} />
+                  </div>
+                ))}
+
+                {showSessionSummary && <SessionSummary msgs={msgs} />}
+
+                {loading && (
+                  <div className="msg-enter" style={{ display:"flex", alignItems:"flex-start", gap:"10px" }}>
+                    <div style={{ width:"28px", height:"28px", flexShrink:0 }}><Logo size={28} /></div>
+                    <div className="thinking"><Waveform /></div>
+                  </div>
+                )}
+
+                {showQuickReplies && lastAiMsg && (
+                  <QuickReplies
+                    lastMsg={lastAiMsg}
+                    onSelect={text => { setInput(text); setTimeout(() => inputRef.current?.focus(), 50); }}
+                  />
+                )}
+
+                <div ref={bottomRef} />
               </div>
             </div>
-          </div>
-
-          {/* Messages */}
-          <div className="msgs">
-            <div className="msgs-inner">
-
-              {msgs.map((msg, i) => (
-                <div key={msg.id} className="msg-enter">
-                  <MsgBubble msg={msg} isLatest={msg.id === latestMsgId} />
-                </div>
-              ))}
-
-              {/* Session summary after 2+ transactions */}
-              {showSessionSummary && <SessionSummary msgs={msgs} />}
-
-              {/* Thinking */}
-              {loading && (
-                <div className="msg-enter" style={{ display:"flex", alignItems:"flex-start", gap:"10px" }}>
-                  <div style={{ width:"28px", height:"28px", flexShrink:0 }}><Logo size={28} /></div>
-                  <div className="thinking"><Waveform /></div>
-                </div>
-              )}
-
-              {/* Context-aware quick replies */}
-              {showQuickReplies && lastAiMsg && (
-                <QuickReplies
-                  lastMsg={lastAiMsg}
-                  onSelect={text => { setInput(text); setTimeout(() => inputRef.current?.focus(), 50); }}
-                />
-              )}
-
-              <div ref={bottomRef} />
-            </div>
-          </div>
-
-
+          )}
 
           {/* Input */}
           <div className="input-area">
@@ -868,18 +1093,22 @@ export default function ChatPage() {
                 {Ic.send}
               </button>
             </div>
-            <p style={{ textAlign:"center", fontSize:"11px", color:"#1f2937", marginTop:"8px" }}>
-              Stashify moves real USDC on Base Sepolia · Always in your control
-            </p>
+            <div className="input-foot">
+              <span>Stashify moves real USDC on Base Sepolia · Always in your control</span>
+              <span style={{ display:"flex", alignItems:"center", gap:"6px" }}>
+                <kbd>↵</kbd> send · <kbd>shift</kbd> + <kbd>↵</kbd> new line
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* ════ DASHBOARD PANEL ════ */}
+        {/* ════ DASHBOARD BACKDROP & PANEL ════ */}
+        <div className={`dash-backdrop ${showDash?"open":""}`} onClick={() => setShowDash(false)} />
         <div className={`dash-panel ${showDash?"open":""}`}>
           <div className="dash-header">
             <div>
               <div style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"16px" }}>Dashboard</div>
-              <div style={{ fontSize:"12px", color:"#6b7280", marginTop:"2px" }}>Your savings overview</div>
+              <div style={{ fontSize:"12px", color:"#6b7280", marginTop:"2px" }}>Your savings, onchain</div>
             </div>
             <button onClick={() => setShowDash(false)} style={{ width:"30px", height:"30px", borderRadius:"8px", display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(255,255,255,.05)", border:"1px solid rgba(255,255,255,.08)", cursor:"pointer", color:"#6b7280", transition:"all 0.2s" }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.1)"; (e.currentTarget as HTMLElement).style.color="#eef2ff"; }}
@@ -890,23 +1119,23 @@ export default function ChatPage() {
 
           <div className="dash-body">
             {/* Total arc card */}
-            <div style={{ display:"flex", alignItems:"center", gap:"20px", padding:"20px", borderRadius:"18px", background:"linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08))", border:"1px solid rgba(99,102,241,.15)", marginBottom:"20px" }}>
+            <div style={{ display:"flex", alignItems:"center", gap:"20px", padding:"20px", borderRadius:"18px", background:"linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08))", border:"1px solid rgba(99,102,241,.18)", marginBottom:"22px" }}>
               <div style={{ position:"relative", flexShrink:0 }}>
-                <Arc pct={overallPct} color="#6366f1" size={80} />
+                <Arc pct={overallPct} color="#6366f1" size={84} />
                 <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                  <span style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"14px" }}>{Math.round(overallPct*100)}%</span>
+                  <span style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"15px", fontFeatureSettings:"'tnum'" }}>{Math.round(overallPct*100)}%</span>
                 </div>
               </div>
               <div>
-                <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"28px", letterSpacing:"-.03em", background:"linear-gradient(135deg,#60a5fa,#a78bfa)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>
+                <div style={{ fontFamily:"var(--FD)", fontWeight:900, fontSize:"30px", letterSpacing:"-.03em", background:"linear-gradient(135deg,#60a5fa,#a78bfa)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", fontFeatureSettings:"'tnum'", lineHeight:1 }}>
                   ${totalSaved.toFixed(2)}
                 </div>
-                <div style={{ fontSize:"12px", color:"#6b7280", marginTop:"3px" }}>of ${totalTarget.toFixed(0)} target</div>
+                <div style={{ fontSize:"12px", color:"#6b7280", marginTop:"6px" }}>of ${totalTarget.toFixed(0)} target</div>
                 <div style={{ fontSize:"11px", color:"#4ade80", marginTop:"6px", fontWeight:600 }}>{goals.length} active goal{goals.length!==1?"s":""}</div>
               </div>
             </div>
 
-            {/* Goals list */}
+            {/* Goals */}
             {goals.length === 0 ? (
               <div style={{ textAlign:"center", padding:"40px 20px" }}>
                 <div style={{ width:"48px", height:"48px", borderRadius:"14px", background:"rgba(99,102,241,.1)", border:"1px solid rgba(99,102,241,.2)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 14px", color:"#818cf8" }}>{Ic.target}</div>
@@ -914,8 +1143,8 @@ export default function ChatPage() {
                 <p style={{ fontSize:"13px", color:"#6b7280", lineHeight:1.6 }}>Tell the AI what you want to save for and your first goal will appear here.</p>
               </div>
             ) : (
-              <div>
-                <p style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"11px", color:"#6b7280", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"12px" }}>Active goals</p>
+              <div style={{ marginBottom:"24px" }}>
+                <p className="dash-section-label">Active goals</p>
                 {goals.map((g, i) => {
                   const pct = Math.min(g.saved/g.target, 1);
                   const c = goalColors[i % goalColors.length];
@@ -925,12 +1154,12 @@ export default function ChatPage() {
                         <div style={{ position:"relative", flexShrink:0 }}>
                           <Arc pct={pct} color={c} size={44} />
                           <div style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                            <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"10px", color:c }}>{Math.round(pct*100)}%</span>
+                            <span style={{ fontFamily:"var(--FD)", fontWeight:800, fontSize:"10px", color:c, fontFeatureSettings:"'tnum'" }}>{Math.round(pct*100)}%</span>
                           </div>
                         </div>
-                        <div style={{ flex:1 }}>
-                          <div style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"14px", marginBottom:"3px" }}>{g.name}</div>
-                          <div style={{ fontSize:"11px", color:"#6b7280" }}>
+                        <div style={{ flex:1, minWidth:0 }}>
+                          <div style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"14px", marginBottom:"3px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{g.name}</div>
+                          <div style={{ fontSize:"11px", color:"#6b7280", fontFeatureSettings:"'tnum'" }}>
                             <span style={{ color:c, fontWeight:700 }}>${g.saved.toFixed(2)}</span> / ${g.target.toFixed(0)}
                           </div>
                         </div>
@@ -938,7 +1167,7 @@ export default function ChatPage() {
                       <div style={{ height:"4px", borderRadius:"2px", background:"rgba(255,255,255,.06)", overflow:"hidden" }}>
                         <div style={{ height:"100%", width:`${pct*100}%`, borderRadius:"2px", background:`linear-gradient(90deg,${c}88,${c})`, transition:"width 1.2s cubic-bezier(.23,1,.32,1)" }} />
                       </div>
-                      <div style={{ marginTop:"8px", fontSize:"11px", color:"#6b7280" }}>${(g.target-g.saved).toFixed(2)} to go</div>
+                      <div style={{ marginTop:"8px", fontSize:"11px", color:"#6b7280", fontFeatureSettings:"'tnum'" }}>${(g.target-g.saved).toFixed(2)} to go</div>
                     </div>
                   );
                 })}
@@ -946,30 +1175,43 @@ export default function ChatPage() {
             )}
 
             {/* Quick actions */}
-            <div style={{ marginTop:"20px" }}>
-              <p style={{ fontFamily:"var(--FD)", fontWeight:700, fontSize:"11px", color:"#6b7280", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"12px" }}>Quick actions</p>
+            <div style={{ marginBottom:"22px" }}>
+              <p className="dash-section-label">Quick actions</p>
               <div style={{ display:"flex", flexDirection:"column", gap:"8px" }}>
-                {["Check my balance","Withdraw savings","Save $20 now"].map(a => (
-                  <button key={a} className="qa-btn" onClick={() => { setShowDash(false); setInput(a); setTimeout(() => inputRef.current?.focus(), 100); }}>
-                    {a}
+                {[
+                  { label:"Check my balance", icon:Ic.target },
+                  { label:"Withdraw savings", icon:Ic.ext },
+                  { label:"Save $20 now", icon:Ic.spark },
+                ].map(a => (
+                  <button key={a.label} className="qa-btn" onClick={() => { setShowDash(false); setInput(a.label); setTimeout(() => inputRef.current?.focus(), 100); }}>
+                    <span style={{ color:"#818cf8", display:"flex" }}>{a.icon}</span>
+                    <span>{a.label}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Network */}
-            <div style={{ marginTop:"20px", padding:"14px", borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)" }}>
-              <p style={{ fontSize:"11px", color:"#6b7280", fontWeight:600, letterSpacing:".1em", textTransform:"uppercase", marginBottom:"10px" }}>Network</p>
-              {[
-                { l:"Chain", v:"Base Sepolia", c:"#60a5fa" },
-                { l:"Vault", v:`${VAULT_ADDRESS.slice(0,8)}...${VAULT_ADDRESS.slice(-4)}`, c:"#4b5563", mono:true },
-                { l:"Status", v:"● Online", c:"#4ade80" },
-              ].map(row => (
-                <div key={row.l} style={{ display:"flex", justifyContent:"space-between", fontSize:"12px", marginBottom:"6px" }}>
-                  <span style={{ color:"#6b7280" }}>{row.l}</span>
-                  <span style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"monospace":"inherit", fontSize:row.mono?"11px":"12px" }}>{row.v}</span>
-                </div>
-              ))}
+            <div>
+              <p className="dash-section-label">Network</p>
+              <div style={{ padding:"14px", borderRadius:"12px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)" }}>
+                {[
+                  { l:"Chain", v:"Base Sepolia", c:"#60a5fa", mono:false },
+                  { l:"Vault", v:`${VAULT_ADDRESS.slice(0,8)}…${VAULT_ADDRESS.slice(-4)}`, c:"#cbd5e1", mono:true, link:`https://sepolia.basescan.org/address/${VAULT_ADDRESS}` },
+                  { l:"Status", v:"Online", c:"#4ade80", mono:false },
+                ].map(row => (
+                  <div key={row.l} style={{ display:"flex", justifyContent:"space-between", fontSize:"12px", marginBottom:"8px", alignItems:"center" }}>
+                    <span style={{ color:"#6b7280" }}>{row.l}</span>
+                    {row.link ? (
+                      <a href={row.link} target="_blank" rel="noopener noreferrer" style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"var(--FM)":"inherit", fontSize:row.mono?"11px":"12px", textDecoration:"none", display:"inline-flex", alignItems:"center", gap:"5px" }}>
+                        {row.v} {Ic.ext}
+                      </a>
+                    ) : (
+                      <span style={{ color:row.c, fontWeight:600, fontFamily:row.mono?"var(--FM)":"inherit", fontSize:row.mono?"11px":"12px" }}>{row.v}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -977,18 +1219,22 @@ export default function ChatPage() {
 
       {/* Mobile bottom nav */}
       <nav className="mobile-nav">
-        {[
-          { icon:Ic.home,  label:"Home",    path:"/" },
-          { icon:Ic.chat,  label:"Chat",    path:"/chat",   active:true },
-          { icon:Ic.pact,  label:"Pacts",   path:"/pact" },
-          { icon:Ic.vault, label:"Vaults",  path:"/vaults" },
-        ].map(item => (
-          <button key={item.path} className={`mobile-nav-btn ${item.active?"active":""}`}
-            onClick={() => !item.active && router.push(item.path)}>
-            {item.icon}
-            {item.label}
-          </button>
-        ))}
+        <button className="mobile-nav-btn active">
+          {Ic.chat}
+          Chat
+        </button>
+        <button className="mobile-nav-btn" onClick={() => router.push("/pact")}>
+          {Ic.pact}
+          Pacts
+        </button>
+        <button className="mobile-nav-btn" onClick={() => router.push("/vaults")}>
+          {Ic.vault}
+          Vaults
+        </button>
+        <button className="mobile-nav-btn" onClick={() => setShowDash(p => !p)}>
+          {Ic.dash}
+          Dashboard
+        </button>
       </nav>
     </>
   );
