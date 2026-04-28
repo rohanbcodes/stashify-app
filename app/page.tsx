@@ -480,6 +480,63 @@ export default function Home() {
 
         /* FOUNDER */
         .quote-mark { font-family: 'Georgia', serif; font-size:140px; line-height:1; color:rgba(99,102,241,.18); position:absolute; top:-18px; left:-8px; user-select:none; }
+        
+        /* ─────────────── MOBILE ─────────────── */
+@media (max-width: 768px) {
+  /* Nav — collapse to logo + open app button only */
+  nav nav { display: none !important; }
+  
+  /* Hero — tighten padding */
+  section[style*="64px 40px 80px"] { padding: 40px 20px 60px !important; }
+  
+  /* All sections — reduce horizontal padding */
+  section { padding-left: 20px !important; padding-right: 20px !important; }
+  
+  /* Long padding cards */
+  #about > div { padding: 44px 28px !important; }
+  
+  /* Final CTA card */
+  section > div[style*="80px 48px"] { padding: 56px 24px !important; }
+  
+  /* Founder metadata row — stack vertically */
+  #about [style*="flex-wrap:wrap"][style*="gap:24px"] { 
+    flex-direction: column !important; 
+    align-items: flex-start !important; 
+    gap: 16px !important; 
+  }
+  #about [style*="width:1px"][style*="height:36px"] { display: none !important; }
+  
+  /* Footer — stack */
+  footer > div { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+  
+  /* Logo marquee — shrink section */
+  div[style*="padding:40px 0 44px"] { padding: 28px 0 32px !important; }
+  
+  /* How it works section */
+  #how { padding: 80px 20px !important; }
+  #why { padding: 80px 20px !important; }
+  #about { padding: 80px 20px !important; }
+  
+  /* Address pills — wrap nicely */
+  .addr-pill { font-size: 10px !important; padding: 7px 12px !important; }
+}
+
+@media (max-width: 480px) {
+  /* Nav padding tighter */
+  nav[class*="nav-s"], nav { padding: 12px 16px !important; }
+  
+  /* Hero padding */
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+  
+  /* Bento — single column on tiny screens */
+  .bento { grid-template-columns: 1fr !important; }
+  .b-lg, .b-tl, .b-sm1, .b-sm2 { grid-column: 1 !important; }
+  
+  /* Founder card extra tight */
+  #about > div { padding: 32px 20px !important; }
+  .quote-mark { font-size: 100px !important; top: -12px !important; }
+}
+
       `}</style>
 
       {/* BG LAYERS */}
