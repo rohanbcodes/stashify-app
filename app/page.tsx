@@ -47,50 +47,62 @@ const Ic = {
 const PartnerLogos = {
   base: (
     <svg viewBox="0 0 130 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="14" cy="18" r="13" fill="currentColor" />
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.4" fill="currentColor">Base</text>
+      <circle cx="14" cy="18" r="13" fill="#0052FF" />
+      <path d="M13.93 27.4c5.2 0 9.4-4.2 9.4-9.4s-4.2-9.4-9.4-9.4c-4.93 0-8.97 3.78-9.36 8.6h12.42v1.6H4.57c.39 4.82 4.43 8.6 9.36 8.6z" fill="#fff" />
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.4" fill="#eef2ff">Base</text>
     </svg>
   ),
   coinbase: (
     <svg viewBox="0 0 165 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="14" cy="18" r="13" fill="currentColor" />
-      <rect x="10" y="16" width="8" height="4" rx="0.5" fill="#060912" />
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="currentColor">Coinbase</text>
+      <circle cx="14" cy="18" r="13" fill="#0052FF" />
+      <rect x="10" y="16" width="8" height="4" rx="0.5" fill="#fff" />
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="#eef2ff">Coinbase</text>
     </svg>
   ),
   usdc: (
     <svg viewBox="0 0 110 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="14" cy="18" r="13" fill="currentColor" />
-      <text x="14" y="23" textAnchor="middle" fontFamily="-apple-system, sans-serif" fontSize="14" fontWeight="700" fill="#060912">$</text>
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="currentColor">USDC</text>
+      <circle cx="14" cy="18" r="13" fill="#2775CA" />
+      <text x="14" y="23" textAnchor="middle" fontFamily="-apple-system, sans-serif" fontSize="14" fontWeight="700" fill="#fff">$</text>
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="#eef2ff">USDC</text>
     </svg>
   ),
   circle: (
     <svg viewBox="0 0 120 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="14" cy="18" r="11" stroke="currentColor" strokeWidth="2.5" fill="none" />
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.4" fill="currentColor">Circle</text>
+      <circle cx="14" cy="18" r="11" stroke="#34D399" strokeWidth="2.5" fill="none" />
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.4" fill="#eef2ff">Circle</text>
     </svg>
   ),
   openai: (
     <svg viewBox="0 0 130 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <path transform="translate(2,4) scale(0.95)" d="M27.18 11.62a8.5 8.5 0 0 0-.73-7 8.6 8.6 0 0 0-9.27-4.13 8.5 8.5 0 0 0-6.4-2.86 8.6 8.6 0 0 0-8.2 5.95 8.5 8.5 0 0 0-5.69 4.13 8.6 8.6 0 0 0 1.06 10.1 8.5 8.5 0 0 0 .73 7 8.6 8.6 0 0 0 9.27 4.13 8.5 8.5 0 0 0 6.4 2.86 8.6 8.6 0 0 0 8.2-5.95 8.5 8.5 0 0 0 5.69-4.13 8.6 8.6 0 0 0-1.06-10.1zM15.66 28.95a6.4 6.4 0 0 1-4.1-1.48l.2-.12 6.84-3.95a1.1 1.1 0 0 0 .56-.97V12.78l2.9 1.67a.1.1 0 0 1 .05.08v8a6.41 6.41 0 0 1-6.45 6.42z" fill="currentColor" />
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="currentColor">OpenAI</text>
+      <path transform="translate(2,4) scale(0.95)" d="M27.18 11.62a8.5 8.5 0 0 0-.73-7 8.6 8.6 0 0 0-9.27-4.13 8.5 8.5 0 0 0-6.4-2.86 8.6 8.6 0 0 0-8.2 5.95 8.5 8.5 0 0 0-5.69 4.13 8.6 8.6 0 0 0 1.06 10.1 8.5 8.5 0 0 0 .73 7 8.6 8.6 0 0 0 9.27 4.13 8.5 8.5 0 0 0 6.4 2.86 8.6 8.6 0 0 0 8.2-5.95 8.5 8.5 0 0 0 5.69-4.13 8.6 8.6 0 0 0-1.06-10.1zM15.66 28.95a6.4 6.4 0 0 1-4.1-1.48l.2-.12 6.84-3.95a1.1 1.1 0 0 0 .56-.97V12.78l2.9 1.67a.1.1 0 0 1 .05.08v8a6.41 6.41 0 0 1-6.45 6.42z" fill="#10A37F" />
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="#eef2ff">OpenAI</text>
     </svg>
   ),
   langchain: (
     <svg viewBox="0 0 145 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="14" cy="18" r="11" stroke="currentColor" strokeWidth="2.5" fill="none" />
-      <circle cx="14" cy="18" r="4" fill="currentColor" />
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="currentColor">LangChain</text>
+      <circle cx="14" cy="18" r="11" stroke="#1C3C3C" strokeWidth="2.5" fill="#16A34A" />
+      <circle cx="14" cy="18" r="4" fill="#fff" />
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="#eef2ff">LangChain</text>
     </svg>
   ),
   nextjs: (
     <svg viewBox="0 0 130 36" height="22" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="14" cy="18" r="13" fill="currentColor" />
-      <path d="M9 12h2v12H9zM18 12h-2v8.5l-4.5-8.5H10v12h1.5v-8.5L18 24h1V12z" fill="#060912" />
-      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="currentColor">Next.js</text>
+      <circle cx="14" cy="18" r="13" fill="#fff" />
+      <path d="M9 12h2v12H9zM18 12h-2v8.5l-4.5-8.5H10v12h1.5v-8.5L18 24h1V12z" fill="#000" />
+      <text x="33" y="24" fontFamily="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" fontSize="17" fontWeight="600" letterSpacing="-0.5" fill="#eef2ff">Next.js</text>
     </svg>
   ),
+};
+
+/* color map for hover glows */
+const LOGO_GLOWS: Record<string, string> = {
+  base: "rgba(0,82,255,0.45)",
+  coinbase: "rgba(0,82,255,0.45)",
+  usdc: "rgba(39,117,202,0.45)",
+  circle: "rgba(52,211,153,0.45)",
+  openai: "rgba(16,163,127,0.45)",
+  langchain: "rgba(22,163,74,0.45)",
+  nextjs: "rgba(255,255,255,0.35)",
 };
 
 /* ─────────────── PARTICLE CANVAS ─────────────── */
@@ -433,8 +445,33 @@ export default function Home() {
         .marquee-wrap { overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
         .marquee { display:flex; gap:64px; animation: scroll 35s linear infinite; width:max-content; }
         @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-        .logo-item { color:#94a3b8; flex-shrink:0; transition:color .3s; cursor:default; opacity:.65; }
-        .logo-item:hover { color:#eef2ff; opacity:1; }
+        .logo-item { 
+        flex-shrink:0; 
+        transition: transform .35s cubic-bezier(.23,1,.32,1), filter .35s ease; 
+        cursor:default; 
+        opacity:.85;
+        filter: saturate(0.85) brightness(0.95);
+        position: relative;
+        padding: 8px 14px;
+        border-radius: 12px;
+      }
+      .logo-item::before {
+         content: '';
+         position: absolute;
+        inset: -4px;
+        border-radius: 14px;
+        background: radial-gradient(circle at center, var(--glow, rgba(99,102,241,.35)), transparent 70%);
+        opacity: 0;
+        transition: opacity .35s ease;
+        z-index: -1;
+        filter: blur(12px);
+      }
+      .logo-item:hover { 
+        opacity: 1; 
+        filter: saturate(1.15) brightness(1.1);
+        transform: translateY(-2px) scale(1.04);
+      }
+      .logo-item:hover::before { opacity: 1; }
 
         /* ADDRESS PILL */
         .addr-pill { display:inline-flex; align-items:center; gap:8px; font-family:var(--FM); font-size:11px; font-weight:500; padding:8px 14px; border-radius:100px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.025); color:#94a3b8; text-decoration:none; transition:all .25s; }
@@ -567,24 +604,35 @@ export default function Home() {
         </section>
 
         {/* ════════════════ LOGO MARQUEE — replaces trust pill row ════════════════ */}
-        <div style={{ borderTop:"1px solid rgba(255,255,255,.05)", borderBottom:"1px solid rgba(255,255,255,.05)", padding:"32px 0", background:"rgba(255,255,255,.012)" }}>
-          <p className="lbl" style={{ textAlign:"center", color:"var(--t2)", marginBottom:"24px" }}>Built on infrastructure you already trust</p>
-          <div className="marquee-wrap">
-            <div className="marquee">
-              {[...Array(2)].map((_, dup) => (
-                <div key={dup} style={{ display:"flex", gap:"64px", flexShrink:0, alignItems:"center" }}>
-                  <div className="logo-item">{PartnerLogos.base}</div>
-                  <div className="logo-item">{PartnerLogos.coinbase}</div>
-                  <div className="logo-item">{PartnerLogos.usdc}</div>
-                  <div className="logo-item">{PartnerLogos.circle}</div>
-                  <div className="logo-item">{PartnerLogos.openai}</div>
-                  <div className="logo-item">{PartnerLogos.langchain}</div>
-                  <div className="logo-item">{PartnerLogos.nextjs}</div>
-                </div>
-              ))}
+        <div style={{ position:"relative", borderTop:"1px solid rgba(255,255,255,.05)", borderBottom:"1px solid rgba(255,255,255,.05)", padding:"40px 0 44px", background:"linear-gradient(180deg, rgba(99,102,241,.025), rgba(139,92,246,.04), rgba(99,102,241,.025))" }}>
+  {/* top + bottom glow lines */}
+  <div style={{ position:"absolute", top:0, left:0, right:0, height:"1px", background:"linear-gradient(90deg, transparent, rgba(99,102,241,.55) 30%, rgba(139,92,246,.55) 70%, transparent)" }} />
+  <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"1px", background:"linear-gradient(90deg, transparent, rgba(139,92,246,.55) 30%, rgba(99,102,241,.55) 70%, transparent)" }} />
+  {/* ambient orb behind marquee */}
+  <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:"60%", height:"120%", background:"radial-gradient(ellipse at center, rgba(99,102,241,.08), transparent 60%)", pointerEvents:"none", filter:"blur(40px)" }} />
+
+  <p className="lbl" style={{ position:"relative", textAlign:"center", marginBottom:"28px", background:"linear-gradient(90deg, #818cf8, #c084fc)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+    Built on infrastructure you already trust
+  </p>
+
+  <div className="marquee-wrap" style={{ position:"relative" }}>
+    <div className="marquee">
+      {[...Array(2)].map((_, dup) => (
+        <div key={dup} style={{ display:"flex", gap:"56px", flexShrink:0, alignItems:"center" }}>
+          {(["base","coinbase","usdc","circle","openai","langchain","nextjs"] as const).map((k) => (
+            <div
+              key={`${dup}-${k}`}
+              className="logo-item"
+              style={{ "--glow": LOGO_GLOWS[k] } as React.CSSProperties}
+            >
+              {PartnerLogos[k]}
             </div>
-          </div>
+          ))}
         </div>
+      ))}
+    </div>
+  </div>
+</div>
 
         {/* ════════════════ HOW IT WORKS ════════════════ */}
         <section id="how" style={{ maxWidth:"1100px", margin:"0 auto", padding:"130px 40px" }}>
